@@ -16,6 +16,32 @@ create table perfil(
     primary key (id_perfil)
 );
 
+create table padrinho(
+	id_padrinho integer not null auto_increment,
+    fk_perfil integer,
+	email varchar(255) unique not null,
+    senha varchar(255) not null,
+    imagem varchar(510),
+    frequencia date,
+    primary key (id_padrinho)
+);
+
+alter table padrinho
+add foreign key (fk_perfil)
+references perfil(id_perfil);
+
+create table administrador(
+	id_admin integer not null auto_increment,
+    fk_perfil integer,
+    email varchar(255) unique not null,
+    senha varchar(255) not null,
+    primary key (id_admin)
+);
+
+alter table administrador
+add foreign key (fk_perfil)
+references perfil(id_perfil);
+
 create table animal(
 	id_animal integer not null auto_increment,
     fk_padrinho integer,
@@ -53,37 +79,13 @@ alter table doacao
 add foreign key (fk_animal)
 references animal(id_animal);
 
-create table padrinho(
-	id_padrinho integer not null auto_increment,
-    fk_perfil integer,
-	email varchar(255) unique not null,
-    senha varchar(255) not null,
-    imagem varchar(510),
-    frequencia date,
-    primary key (id_padrinho)
-);
-
-alter table padrinho
-add foreign key (fk_perfil)
-references perfil(id_perfil);
-
-create table administrador(
-	id_admin integer not null auto_increment,
-    fk_perfil integer,
-    email varchar(255) unique not null,
-    senha varchar(255) not null,
-    primary key (id_admin)
-);
-
-alter table administrador
-add foreign key (fk_perfil)
-references perfil(id_perfil);
-
 create table post(
 	id_post integer not null auto_increment,
     fk_administrador integer,
+    titulo varchar(255),
     texto longtext,
     imagem varchar(510),
+    data_post date,
     primary key (id_post)
 );
 
@@ -96,6 +98,7 @@ create table comentario(
     fk_padrinho integer,
     fk_post integer,
     texto longtext,
+    data_hora datetime,
     primary key (id_comentario)
 );
 
