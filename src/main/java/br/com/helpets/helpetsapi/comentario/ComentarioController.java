@@ -1,9 +1,8 @@
 package br.com.helpets.helpetsapi.comentario;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +17,14 @@ public class ComentarioController {
         this.comentarioRepository = comentarioRepository;
     }
 
-    //R do CRUD - Mostrar todos os comentarios
+    //C do CRUD - Criar comentário
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/comentarios")
+    public Comentario save(@RequestBody Comentario comentario){
+        return comentarioRepository.save(comentario);
+    }
+
+    //R do CRUD - Mostrar todos os comentários
     @GetMapping("/comentarios")
     public List<Comentario> findAll(){
         return comentarioRepository.findAll();

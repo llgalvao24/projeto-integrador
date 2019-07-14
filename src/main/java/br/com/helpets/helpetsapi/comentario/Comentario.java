@@ -9,13 +9,13 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Data
 public class Comentario {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idComentario;
 
@@ -35,5 +35,6 @@ public class Comentario {
     @NotBlank
     private String texto;
 
-    private LocalDateTime dateTime;
+    //Precisa ser analisado
+    private String dateTime = DateTimeFormatter.ISO_DATE.format(LocalDateTime.now());
 }
