@@ -36,14 +36,14 @@ public class PerfilController {
 
     @PostMapping("/perfil/nome")
     public List<Perfil> findByName(@RequestParam String nome){
-        return perfilRepository.findByName(nome);
+        return perfilRepository.findByNome(nome);
     }
 
     // UPDATE
 
-    @PatchMapping("/perfil/atualiza/{id}")
-    public void updateNome(@PathVariable Long id, @RequestParam String nome){
-        perfilRepository.updateNome(nome, id);
+    @PatchMapping("/perfil/atualiza/{idPerfil}")
+    public void updateNome(@PathVariable Long idPerfil, @RequestParam String nome){
+        perfilRepository.updateNome(nome, idPerfil);
     }
 
     // Fazer o método update com todos os outros campos da tabela
@@ -51,9 +51,9 @@ public class PerfilController {
 
     // DELETE
 
-    @DeleteMapping("/perfil/{id}")
-    public void delete(@PathVariable Long id){
-        perfilRepository.delete(id);
+    @DeleteMapping("/perfil/{idPerfil}")
+    public void delete(@PathVariable Long idPerfil){
+        perfilRepository.deleteById(idPerfil);
     }
 
 }

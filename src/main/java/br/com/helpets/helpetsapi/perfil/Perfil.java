@@ -13,7 +13,6 @@ public class Perfil {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_perfil")
     private Long idPerfil;
 
     @NotNull
@@ -42,7 +41,6 @@ public class Perfil {
     private String cep;
 
     @NotNull
-    @Column(name = "data_nascimento")
     private Date dataNascimento;
 
 }

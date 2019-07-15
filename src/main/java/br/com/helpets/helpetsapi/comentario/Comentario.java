@@ -2,14 +2,10 @@ package br.com.helpets.helpetsapi.comentario;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Entity
 @Data
@@ -35,6 +31,6 @@ public class Comentario {
     @NotBlank
     private String texto;
 
-    //Precisa ser analisado
-    private String dateTime = DateTimeFormatter.ISO_DATE.format(LocalDateTime.now());
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateTime;
 }
