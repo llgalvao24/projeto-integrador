@@ -1,4 +1,6 @@
 package br.com.helpets.helpetsapi.padrinho;
 
-public interface PadrinhoRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PadrinhoRepository extends JpaRepository<Padrinho, Long> {
 }

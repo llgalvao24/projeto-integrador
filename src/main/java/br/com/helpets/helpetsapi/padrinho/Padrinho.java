@@ -28,7 +28,7 @@ public class Padrinho {
     private String senha;
 
     @NotNull
-    private String image;
+    private String imagem;
 // me disseram que pra imagem é preciso colocar o link dela.
 
     @NotNull
