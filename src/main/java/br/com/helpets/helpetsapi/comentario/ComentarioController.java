@@ -30,12 +30,19 @@ public class ComentarioController {
         return comentarioRepository.findAll();
     }
 
+    //U do CRUD - Update de comentário por usuário
     /* TODO - Update comentário - esperando classe Padrinho
-    @PatchMapping("/comentario/update/{padrinho}")
+    @PatchMapping("/comentarios/update/{padrinho}")
     public void updateByName(@PathVariable Padrinho padrinho, @RequestParam String texto){
         comentarioRepository.updateComentariobyPadrinho(padrinho, texto);
     }
      */
+
+    //D do CRUD - deletar comentário
+    @DeleteMapping("/comentarios/{idComentario}")
+    public void delete(@PathVariable Long idComentario){
+        comentarioRepository.deleteById(idComentario);
+    }
 
 
 }
