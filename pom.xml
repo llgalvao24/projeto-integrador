@@ -60,12 +60,17 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>0.18</version>
+		</dependency>
+    
+    <dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjtw</artifactId>
 		</dependency>
-
 	</dependencies>
-
+  
 	<build>
 		<plugins>
 			<plugin>
