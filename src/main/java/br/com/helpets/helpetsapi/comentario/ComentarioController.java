@@ -32,6 +32,7 @@ public class ComentarioController {
 
     //U do CRUD - Update de comentário por usuário
     /* TODO - Update comentário - esperando classe Padrinho
+    TODO - path: usuario/usuarioId/cometario/comentarioId, variaveis: idUsuario e idComentario
     @PatchMapping("/comentarios/update/{padrinho}")
     public void updateByName(@PathVariable Padrinho padrinho, @RequestParam String texto){
         comentarioRepository.updateComentariobyPadrinho(padrinho, texto);
@@ -39,6 +40,7 @@ public class ComentarioController {
      */
 
     //D do CRUD - deletar comentário
+    //TODO - path: usuario/usuarioId/cometario/comentarioId, variaveis: idUsuario e idComentario
     @DeleteMapping("/comentarios/{idComentario}")
     public void delete(@PathVariable Long idComentario){
         comentarioRepository.deleteById(idComentario);
