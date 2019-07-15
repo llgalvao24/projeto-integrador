@@ -1,4 +1,6 @@
 package br.com.helpets.helpetsapi.doacao;
 
-public class DoacaoRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DoacaoRepository extends JpaRepository<Doacao, Long> {
 }
