@@ -29,4 +29,13 @@ public class ComentarioController {
     public List<Comentario> findAll(){
         return comentarioRepository.findAll();
     }
+
+    /* TODO - Update comentário - esperando classe Padrinho
+    @PatchMapping("/comentario/update/{padrinho}")
+    public void updateByName(@PathVariable Padrinho padrinho, @RequestParam String texto){
+        comentarioRepository.updateComentariobyPadrinho(padrinho, texto);
+    }
+     */
+
+
 }
