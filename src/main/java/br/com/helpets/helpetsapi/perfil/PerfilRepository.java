@@ -10,11 +10,9 @@ import java.util.List;
 @Repository
 public interface PerfilRepository extends JpaRepository<Perfil,Long> {
 
-    List<Perfil> findByName(String nome);
+    List<Perfil> findByNome(String nome);
 
     @Modifying
     @Query(value = "update Perfil u set u.nome = :nome where u.id = :id")
     void updateNome(@Param("nome") String nome, @Param("id") Long id);
-
-    void delete(Long id);
 }
