@@ -24,8 +24,4 @@ public class Administrador {
     private String senha;
 
 
-
-
-
-
 }
