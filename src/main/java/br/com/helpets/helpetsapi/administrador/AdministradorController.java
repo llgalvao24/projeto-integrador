@@ -2,12 +2,13 @@ package br.com.helpets.helpetsapi.administrador;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("api/V1")
+@RequestMapping("api/v1")
 public class AdministradorController {
 
     @Autowired//Força a injeção de dependencia
@@ -27,10 +28,21 @@ public class AdministradorController {
         return administradorRepository.findAll(); //
     }
 
-    //Update updateAdministradorbyAdministrador
-    @PatchMapping("/administrador/update/{administrador}")
-    public void updateByName(@PathVariable Administrador administrador, @RequestParam String texto){
-        administradorRepository.updateAdministradorby(administrador, texto);
+
+
+
+    //Update com Lambida
+    @PutMapping(value="/administrador/{id}")
+    public ResponseEntity update(@PathVariable("id") long id,
+                                 @RequestBody Administrador administrador) {
+        return administradorRepository.findById(id)
+                .map(record -> {
+                    record.setEmail(administrador.getEmail());
+                    record.setEndereco(administrador.getEndereco());
+                    record.setSenha(administrador.getSenha());
+                    Administrador updated = administradorRepository.save(record);
+                    return ResponseEntity.ok().body(updated);
+                }).orElse(ResponseEntity.notFound().build());
     }
 
 
@@ -39,9 +51,6 @@ public class AdministradorController {
     public void delete(@PathVariable Long id_admin){
         administradorRepository.deleteById(id_admin);
     }
-
-
-
 
 
 }
