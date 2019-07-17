@@ -1,5 +1,8 @@
 package br.com.helpets.helpetsapi.comentario;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,14 @@ public class ComentarioController {
         this.comentarioRepository = comentarioRepository;
     }
 
+    @ApiOperation(value = "Insere novo comentário",
+            notes = "Insere novo comentário",
+            response = Comentario.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Sucesso"),
+            @ApiResponse(code = 401, message = "Sem autorização"),
+            @ApiResponse(code = 403, message = "Proibido"),
+    })
     //C do CRUD - Criar comentário
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/comentarios")
