@@ -109,5 +109,3 @@ references padrinho(id_padrinho);
 alter table comentario
 add foreign key (fk_post)
 references post(id_post);
-
-

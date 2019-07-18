@@ -9,6 +9,7 @@ import java.util.Date;
 @Data
 
 @Entity
+@Table(name = "perfil")
 public class Perfil {
 
     @Id
@@ -16,7 +17,7 @@ public class Perfil {
     private Long idPerfil;
 
     @NotNull
-    @Column(unique = true)
+//    @Column(unique = true)
     private String cpf;
 
     @NotNull

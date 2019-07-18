@@ -1,5 +1,6 @@
 package br.com.helpets.helpetsapi.comentario;
 
+import br.com.helpets.helpetsapi.post.Post;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,8 +8,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-@Entity
 @Data
+
+@Entity
 public class Comentario {
 
     @Id
@@ -21,11 +23,9 @@ public class Comentario {
     private Padrinho padrinho;
     */
 
-    /* TODO - Esperando classe Post
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "id_post")
     private Post post;
-    */
 
     @NotNull
     @NotBlank
