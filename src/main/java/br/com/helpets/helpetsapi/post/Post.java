@@ -13,12 +13,11 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
-    private Integer id_post;
+    private Long idPost;
 
-    @NotNull
-    @NotBlank
-    private Integer fk_administrador;
+//    @NotNull
+//    @NotBlank
+//    private Administrador administrador;
     
     @NotNull
     @NotBlank
@@ -36,5 +35,5 @@ public class Post {
         
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date data_post;
+    private Date dataHoraPost;
 }
