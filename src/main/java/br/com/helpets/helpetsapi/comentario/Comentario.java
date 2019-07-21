@@ -1,36 +1,50 @@
 package br.com.helpets.helpetsapi.comentario;
 
+import br.com.helpets.helpetsapi.administrador.Administrador;
+import br.com.helpets.helpetsapi.padrinho.Padrinho;
 import br.com.helpets.helpetsapi.post.Post;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.io.Serializable;
+import java.time.Instant;
 
 @Data
 
 @Entity
-public class Comentario {
+public class Comentario implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idComentario;
+    private Long id;
 
-    /* TODO - Esperando classe Padrinho
+    @Lob
+    @Column(name = "conteudo", nullable = false)
+    private String conteudo;
+
+    @NotNull
+    @Column(name = "com_data", nullable = false)
+    private Instant comData;
+
+    @ManyToOne
+    @JsonIgnoreProperties("comentarios")
+    private Administrador administrador;
+
+    @ManyToOne
+    @JsonIgnoreProperties("comentarios")
+    private Padrinho padrinho;
+
+    @ManyToOne
+    @JsonIgnoreProperties("comentarios")
+    private Post post;
+
+    /* TODO - Testar anotações de fk
     @ManyToOne
     @JoinColumn
     private Padrinho padrinho;
     */
-
-    @ManyToOne
-    @JoinColumn(name = "id_post")
-    private Post post;
-
-    @NotNull
-    @NotBlank
-    private String texto;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateTime;
 }
