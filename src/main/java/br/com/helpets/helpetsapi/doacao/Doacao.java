@@ -1,35 +1,46 @@
 package br.com.helpets.helpetsapi.doacao;
 
+import br.com.helpets.helpetsapi.animal.Animal;
+import br.com.helpets.helpetsapi.padrinho.Padrinho;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @Entity
-public class Doacao {
+@Table(name = "doacao")
+public class Doacao implements Serializable {
 
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idDoacao;
+    private Long id;
 
     @NotNull
-    int racao ;
+    @Column(name = "racao")
+    private Long racao;
 
     @NotNull
-    int banhoTosa;
+    @Column(name = "banhoTosa")
+    private Long banhoTosa;
 
     @NotNull
-    int medicamentosVacina;
-
+    @Column(name = "medicamentos")
+    private Long medicamento;
 
     @NotNull
-    int acessorios;
+    @Column(name = "acessorio")
+    private Long acessorio;
 
+    @ManyToOne
+    @JsonIgnoreProperties("doacaos")
+    private Padrinho padrinho;
 
-
+    @ManyToOne
+    @JsonIgnoreProperties("doacaos")
+    private Animal animal;
 }

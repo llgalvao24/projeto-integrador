@@ -11,9 +11,9 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Instant;
 
-@Data
-
 @Entity
+@Table(name = "comentario")
+@Data
 public class Comentario implements Serializable {
 
     private static final long serialVersionUID = 1L;
