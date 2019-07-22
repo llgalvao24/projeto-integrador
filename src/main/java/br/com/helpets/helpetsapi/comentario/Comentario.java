@@ -32,14 +32,17 @@ public class Comentario implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("comentarios")
+    @JoinColumn
     private Administrador administrador;
 
     @ManyToOne
     @JsonIgnoreProperties("comentarios")
+    @JoinColumn
     private Padrinho padrinho;
 
     @ManyToOne
     @JsonIgnoreProperties("comentarios")
+    @JoinColumn
     private Post post;
 
     /* TODO - Testar anotações de fk

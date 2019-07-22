@@ -30,16 +30,16 @@ public class PadrinhoController {
 
     // UPDATE
 
-    @PatchMapping("/padrinhos/atualiza/{idPadrinho}")
-    public void updateEmail(@PathVariable Long idPadrinho, @RequestParam String email){
-        padrinhoRepository.updateEmail(email, idPadrinho);
+    @PatchMapping("/padrinhos/atualiza/{id}")
+    public void updateEmail(@PathVariable Long id, @RequestParam String email){
+        padrinhoRepository.updateEmail(email, id);
     }
 
     // DELETE
 
-    @DeleteMapping("/padrinhos/{idPadrinho}")
-    public void delete(@PathVariable Long idPadrinho){
-        padrinhoRepository.deleteById(idPadrinho);
+    @DeleteMapping("/padrinhos/{id}")
+    public void delete(@PathVariable Long id){
+        padrinhoRepository.deleteById(id);
     }
 
 }

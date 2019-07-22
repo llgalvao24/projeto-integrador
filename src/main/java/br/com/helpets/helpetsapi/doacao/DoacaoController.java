@@ -29,7 +29,6 @@ public class DoacaoController {
     }
 
 
-
     //Update com Lambida
     @PutMapping(value="/doacao/{id}")
     public ResponseEntity update(@PathVariable("id") long id,
@@ -38,13 +37,11 @@ public class DoacaoController {
                 .map(record -> {
                     record.setRacao(doacao.getRacao());
                     record.setBanhoTosa(doacao.getBanhoTosa());
-                    record.setMedicamentosVacina(doacao.getMedicamentosVacina());
+                    record.setMedicamento(doacao.getMedicamento());
                     Doacao updated = doacaoRepository.save(record);
                     return ResponseEntity.ok().body(updated);
                 }).orElse(ResponseEntity.notFound().build());
     }
-
-
 
     // Delete
     @DeleteMapping("/doacao/{id}")

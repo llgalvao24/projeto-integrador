@@ -12,9 +12,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 @Table(name = "animal")
-@Data
 public class Animal implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,10 +55,11 @@ public class Animal implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("animals")
+    @JoinColumn
     private Padrinho padrinho;
 
     @OneToMany(mappedBy = "animal")
-    private Set<Doacao> doacoes = new HashSet<>();
+    private Set<Doacao> doacoes;
 
     /* TODO - Testar anotações
     @ManyToOne

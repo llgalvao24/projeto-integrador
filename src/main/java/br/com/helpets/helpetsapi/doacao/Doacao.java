@@ -38,9 +38,11 @@ public class Doacao implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("doacaos")
+    @JoinColumn
     private Padrinho padrinho;
 
     @ManyToOne
     @JsonIgnoreProperties("doacaos")
+    @JoinColumn
     private Animal animal;
 }
