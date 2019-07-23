@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class AnimalController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/animais")
-    public Animal save(@RequestBody Animal animal){
+    public Animal save(@Valid @RequestBody Animal animal){
         return animalRepository.save(animal);
     }
 
@@ -30,16 +31,16 @@ public class AnimalController {
 
     // UPDATE
 
-    @PatchMapping("/animais/atualiza/{idAnimal}")
-    public void updateNome(@PathVariable Long idAnimal, @RequestParam String nome){
-        animalRepository.updateNome(nome,idAnimal);
+    @PatchMapping("/animais/atualiza/{id}")
+    public void updateNome(@PathVariable Long id, @RequestParam String animalNome){
+        animalRepository.updateNome(animalNome,id);
     }
 
     // DELETE
 
-    @DeleteMapping("/animais/{idAnimal}")
-    public void delete(@PathVariable Long idAnimal){
-        animalRepository.deleteById(idAnimal);
+    @DeleteMapping("/animais/{id}")
+    public void delete(@PathVariable Long id){
+        animalRepository.deleteById(id);
     }
 
 }

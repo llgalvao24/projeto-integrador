@@ -41,9 +41,9 @@ public class PerfilController {
 
     // UPDATE
 
-    @PatchMapping("/perfil/atualiza/{idPerfil}")
-    public void updateNome(@PathVariable Long idPerfil, @RequestParam String nome){
-        perfilRepository.updateNome(nome, idPerfil);
+    @PatchMapping("/perfil/atualiza/{id}")
+    public void updateNome(@PathVariable Long id, @RequestParam String nome){
+        perfilRepository.updateNome(nome, id);
     }
 
     // Fazer o método update com todos os outros campos da tabela
@@ -51,9 +51,9 @@ public class PerfilController {
 
     // DELETE
 
-    @DeleteMapping("/perfil/{idPerfil}")
-    public void delete(@PathVariable Long idPerfil){
-        perfilRepository.deleteById(idPerfil);
+    @DeleteMapping("/perfil/{id}")
+    public void delete(@PathVariable Long id){
+        perfilRepository.deleteById(id);
     }
 
 }

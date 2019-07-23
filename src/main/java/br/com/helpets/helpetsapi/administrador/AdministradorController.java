@@ -28,9 +28,6 @@ public class AdministradorController {
         return administradorRepository.findAll(); //
     }
 
-
-
-
     //Update com Lambida
     @PutMapping(value="/administrador/{id}")
     public ResponseEntity update(@PathVariable("id") long id,
@@ -38,18 +35,16 @@ public class AdministradorController {
         return administradorRepository.findById(id)
                 .map(record -> {
                     record.setEmail(administrador.getEmail());
-                    record.setEndereco(administrador.getEndereco());
                     record.setSenha(administrador.getSenha());
                     Administrador updated = administradorRepository.save(record);
                     return ResponseEntity.ok().body(updated);
                 }).orElse(ResponseEntity.notFound().build());
     }
 
-
    // Delete
-    @DeleteMapping("/administrador/{id_admin}")
-    public void delete(@PathVariable Long id_admin){
-        administradorRepository.deleteById(id_admin);
+    @DeleteMapping("/administrador/{id}")
+    public void delete(@PathVariable Long id){
+        administradorRepository.deleteById(id);
     }
 
 

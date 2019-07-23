@@ -41,9 +41,9 @@ public class ComentarioController {
 
     //D do CRUD - deletar comentário
     //TODO - path: usuario/usuarioId/cometario/comentarioId, variaveis: idUsuario e idComentario
-    @DeleteMapping("/comentarios/{idComentario}")
-    public void delete(@PathVariable Long idComentario){
-        comentarioRepository.deleteById(idComentario);
+    @DeleteMapping("/comentarios/{id}")
+    public void delete(@PathVariable Long id){
+        comentarioRepository.deleteById(id);
     }
 
 

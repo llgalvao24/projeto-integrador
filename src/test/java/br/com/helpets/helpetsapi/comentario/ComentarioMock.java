@@ -9,7 +9,7 @@ public class ComentarioMock {
     public static Comentario getComentarioMock(){
         Comentario comentario = new Comentario();
         Faker faker = new Faker(new Locale("pt-BR"));
-        comentario.setTexto(faker.hitchhikersGuideToTheGalaxy().quote());
+        comentario.setConteudo(faker.hitchhikersGuideToTheGalaxy().quote());
         return comentario;
     }
 }
