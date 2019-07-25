@@ -43,17 +43,17 @@ public class Post implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("posts")
     @JoinColumn
-    private Usuario usuario;
+    private User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private Set<Comentario> comentarios;
 
-    public Post(String titulo, String postImagem, String conteudo, Instant postData, Usuario usuario, Comentario comentarios){
+    public Post(String titulo, String postImagem, String conteudo, Instant postData, User user, Comentario comentarios){
         this.titulo = titulo;
         this.postImagem = postImagem;
         this.conteudo = conteudo;
         this.postData = postData;
-        this.usuario = usuario;
+        this.user = user;
         this.comentarios = Stream.of(comentarios).collect(Collectors.toSet());
         this.comentarios.forEach(x -> x.setPost(this));
     }

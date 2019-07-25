@@ -1,7 +1,5 @@
 package br.com.helpets.helpetsapi.model;
 
-import br.com.helpets.helpetsapi.model.Doacao;
-import br.com.helpets.helpetsapi.model.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -54,7 +52,7 @@ public class Animal implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("animals")
     @JoinColumn
-    private Usuario usuario;
+    private User user;
 
     @OneToMany(mappedBy = "animal")
     private Set<Doacao> doacoes;
@@ -64,5 +62,4 @@ public class Animal implements Serializable {
     @JoinColumn
     private Padrinho padrinho;
     */
-
 }

@@ -37,7 +37,7 @@ public class Doacao implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("doacaos")
     @JoinColumn
-    private Usuario usuario;
+    private User user;
 
     @ManyToOne
     @JsonIgnoreProperties("doacaos")
