@@ -32,7 +32,7 @@ public class UserController {
     // UPDATE
     @PatchMapping("/users/update/{id}")
     public void updateNome(@PathVariable Long id, @RequestParam String firstName, @RequestParam String lastName){
-        userRepository.updateFirstNameAndLastNameById(firstName, lastName, id);
+        userRepository.updateFirstNameAndLastNameById(id, firstName, lastName);
     }
 
     // DELETE

@@ -1,6 +1,7 @@
 package br.com.helpets.helpetsapi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import br.com.helpets.helpetsapi.model.Comentario;
+import br.com.helpets.helpetsapi.model.Post;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,24 +22,11 @@ public class User implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "username")
-    private String username;
-
-    @NotNull
-    @Column(name = "password", nullable = false)
-    @JsonIgnore
-    private String password;
-
-    @NotNull
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @NotNull
-    @Column(name = "cpf", nullable = false)
+//    @Column(unique = true)
     private String cpf;
 
     @NotNull
-    @Column(name = "name")
+    @Column(name = "first_name")
     private String firstName;
 
     @NotNull
@@ -46,40 +34,48 @@ public class User implements Serializable {
     private String lastName;
 
     @NotNull
+    @Column(name = "username")
+    private String username;
+
+    @NotNull
     @Column(name = "address")
     private String address;
 
     @NotNull
-    @Column(name = "neighborhood")
-    private String neighborhood;
+    @Column(name = "bairro")
+    private String bairro;
 
     @NotNull
     @Column(name = "city")
     private String city;
 
     @NotNull
-    @Column(name = "state")
-    private String state;
+    @Column(name = "")
+    private String estado;
 
     @NotNull
     @Column(name = "cep")
     private String cep;
 
     @NotNull
-    @Column(name = "birthDate")
-    private Date birthDate;
+    @Column(name = "dataNascimento")
+    private Date dataNascimento;
 
     @NotNull
-    @Column(name = "phone", nullable = false)
-    private String phone;
+    @Column(name = "imagem")
+    private String imagem;
 
     @NotNull
-    @Column(name = "image")
-    private String image;
+    @Column(name = "frequencia")
+    private Date frequencia;
 
     @NotNull
-    @Column(name = "frequency")
-    private java.sql.Date frequency;
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @NotNull
+    @Column(name = "senha", nullable = false)
+    private String senha;
 
     // Lembrar de colocar um IF no front para o acesso do admin
     @OneToMany
