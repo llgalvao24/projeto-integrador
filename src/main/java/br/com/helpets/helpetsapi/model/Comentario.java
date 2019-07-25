@@ -30,7 +30,7 @@ public class Comentario implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("comentarios")
     @JoinColumn
-    private Usuario usuario;
+    private User user;
 
 
     @ManyToOne

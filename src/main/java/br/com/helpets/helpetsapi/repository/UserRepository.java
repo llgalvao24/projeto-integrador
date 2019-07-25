@@ -1,6 +1,6 @@
 package br.com.helpets.helpetsapi.repository;
 
-import br.com.helpets.helpetsapi.model.Usuario;
+import br.com.helpets.helpetsapi.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,13 +10,13 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "update Usuario u set u.nome = :nome where u.id = :id")
+    @Query(value = "update User u set u.nome = :nome where u.id = :id")
     void updateNome(@Param("nome") String nome, @Param("id") Long id);
 
-    Usuario findByNome(String nome);
+    User findByNome(String nome);
 
 }

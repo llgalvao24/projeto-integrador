@@ -12,8 +12,8 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "usuario")
-public class Usuario implements Serializable {
+@Table(name = "user")
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,27 +26,31 @@ public class Usuario implements Serializable {
     private String cpf;
 
     @NotNull
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "first_name")
+    private String firstName;
 
     @NotNull
-    @Column(name = "sobrenome")
-    private String sobrenome;
+    @Column(name = "last_name")
+    private String lastName;
 
     @NotNull
-    @Column(name = "endereco")
-    private String endereco;
+    @Column(name = "username")
+    private String username;
+
+    @NotNull
+    @Column(name = "address")
+    private String address;
 
     @NotNull
     @Column(name = "bairro")
     private String bairro;
 
     @NotNull
-    @Column(name = "cidade")
-    private String cidade;
+    @Column(name = "city")
+    private String city;
 
     @NotNull
-    @Column(name = "estado")
+    @Column(name = "")
     private String estado;
 
     @NotNull
@@ -63,7 +67,7 @@ public class Usuario implements Serializable {
 
     @NotNull
     @Column(name = "frequencia")
-    private java.sql.Date frequencia;
+    private Date frequencia;
 
     @NotNull
     @Column(name = "email", nullable = false)
