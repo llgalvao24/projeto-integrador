@@ -1,5 +1,7 @@
-package br.com.helpets.helpetsapi.animal;
+package br.com.helpets.helpetsapi.controller;
 
+import br.com.helpets.helpetsapi.repository.AnimalRepository;
+import br.com.helpets.helpetsapi.model.Animal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
-package br.com.helpets.helpetsapi.usuario;
+package br.com.helpets.helpetsapi.model;
 
-import br.com.helpets.helpetsapi.comentario.Comentario;
-import br.com.helpets.helpetsapi.post.Post;
+import br.com.helpets.helpetsapi.model.Comentario;
+import br.com.helpets.helpetsapi.model.Post;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "usuário")
+@Table(name = "usuario")
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;

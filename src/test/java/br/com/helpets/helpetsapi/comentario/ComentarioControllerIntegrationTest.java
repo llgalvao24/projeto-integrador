@@ -1,6 +1,7 @@
 package br.com.helpets.helpetsapi.comentario;
 
-import br.com.helpets.helpetsapi.HelpetsApiApplication;
+import br.com.helpets.helpetsapi.model.Comentario;
+import br.com.helpets.helpetsapi.service.HelpetsApiApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

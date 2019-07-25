@@ -1,5 +1,6 @@
-package br.com.helpets.helpetsapi.doacao;
+package br.com.helpets.helpetsapi.repository;
 
+import br.com.helpets.helpetsapi.model.Doacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

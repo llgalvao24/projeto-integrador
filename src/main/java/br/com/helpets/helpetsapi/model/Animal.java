@@ -1,7 +1,7 @@
-package br.com.helpets.helpetsapi.animal;
+package br.com.helpets.helpetsapi.model;
 
-import br.com.helpets.helpetsapi.doacao.Doacao;
-import br.com.helpets.helpetsapi.usuario.Usuario;
+import br.com.helpets.helpetsapi.model.Doacao;
+import br.com.helpets.helpetsapi.model.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 

@@ -1,5 +1,6 @@
 package br.com.helpets.helpetsapi.comentario;
 
+import br.com.helpets.helpetsapi.model.Comentario;
 import com.github.javafaker.Faker;
 
 import java.util.Locale;

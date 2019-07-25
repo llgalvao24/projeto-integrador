@@ -1,7 +1,5 @@
-package br.com.helpets.helpetsapi.post;
+package br.com.helpets.helpetsapi.model;
 
-import br.com.helpets.helpetsapi.comentario.Comentario;
-import br.com.helpets.helpetsapi.usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,5 +1,7 @@
-package br.com.helpets.helpetsapi.post;
+package br.com.helpets.helpetsapi.controller;
 
+import br.com.helpets.helpetsapi.model.Post;
+import br.com.helpets.helpetsapi.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

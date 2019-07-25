@@ -1,5 +1,7 @@
-package br.com.helpets.helpetsapi.comentario;
+package br.com.helpets.helpetsapi.controller;
 
+import br.com.helpets.helpetsapi.model.Comentario;
+import br.com.helpets.helpetsapi.repository.ComentarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

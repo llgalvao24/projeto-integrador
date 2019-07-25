@@ -1,5 +1,6 @@
-package br.com.helpets.helpetsapi.animal;
+package br.com.helpets.helpetsapi.repository;
 
+import br.com.helpets.helpetsapi.model.Animal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

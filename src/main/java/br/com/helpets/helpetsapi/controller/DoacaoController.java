@@ -1,5 +1,7 @@
-package br.com.helpets.helpetsapi.doacao;
+package br.com.helpets.helpetsapi.controller;
 
+import br.com.helpets.helpetsapi.model.Doacao;
+import br.com.helpets.helpetsapi.repository.DoacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
