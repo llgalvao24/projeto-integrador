@@ -1,7 +1,5 @@
 package br.com.helpets.helpetsapi.model;
 
-import br.com.helpets.helpetsapi.model.Comentario;
-import br.com.helpets.helpetsapi.model.Post;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
@@ -23,70 +21,20 @@ public class User implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "username")
-    private String username;
+    @Column(name = "firstname")
+    private String firstname;
 
     @NotNull
-    @Column(name = "password")
+    @Column(name = "lastname")
     @JsonIgnore
-    private String password;
+    private String lastname;
 
     @NotNull
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "emailId", nullable = false)
+    private String emailId;
 
     @NotNull
-    @Column(name = "cpf")
-    private String cpf;
+    @Column(name = "active")
+    private boolean active;
 
-    @NotNull
-    @Column(name = "first_name")
-    private String firstName;
-
-    @NotNull
-    @Column(name = "last_name")
-    private String lastName;
-
-    @NotNull
-    @Column(name = "address")
-    private String address;
-
-    @NotNull
-    @Column(name = "neighborhood")
-    private String neighborhood;
-
-    @NotNull
-    @Column(name = "city")
-    private String city;
-
-    @NotNull
-    @Column(name = "state")
-    private String state;
-
-    @NotNull
-    @Column(name = "zip_code")
-    private String zipCode;
-
-    @NotNull
-    @Column(name = "birth_date")
-    private Date birthDate;
-
-    @NotNull
-    @Column(name = "phone")
-    private String phone;
-
-    @NotNull
-    @Column(name = "image")
-    private String image;
-
-    @NotNull
-    @Column(name = "frequency")
-    private Date frequency;
-
-    // Lembrar de colocar um IF no front para o acesso do admin
-    @OneToMany
-    private Set<Post> posts;
-
-    @OneToMany
-    private Set<Comentario> comentarios;
 }

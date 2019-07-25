@@ -41,23 +41,13 @@ public class UserController {
     }
 
     // UPDATE
-    @PatchMapping("/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long id,
-                                                   @Valid @RequestBody User userDetails) throws ResourceNotFoundException {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + id));
 
-        user.setLastName(userDetails.getLastName());
-        user.setFirstName(userDetails.getFirstName());
-        user.setEmail(userDetails.getEmail());
-        user.setAddress(userDetails.getAddress());
-        final User updatedUser = userRepository.save(user);
-        return ResponseEntity.ok(updatedUser);
-    }
 
 
     // DELETE
-    public void delete(@PathVariable Long id){
+
+    @DeleteMapping("/user/{id}")
+    public void deleteUser(@PathVariable Long id){
         userRepository.deleteById(id);
     }
 }
