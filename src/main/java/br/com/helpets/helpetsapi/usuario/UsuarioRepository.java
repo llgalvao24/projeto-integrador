@@ -1,18 +1,19 @@
-package br.com.helpets.helpetsapi.perfil;
+package br.com.helpets.helpetsapi.usuario;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import java.util.List;
+
+import javax.transaction.Transactional;
 
 @Repository
-public interface PerfilRepository extends JpaRepository<Perfil,Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    List<Perfil> findByNome(String nome);
-
+    @Transactional
     @Modifying
-    @Query(value = "update Perfil u set u.nome = :nome where u.id = :id")
+    @Query(value = "update Usuario u set u.nome = :nome where u.id = :id")
     void updateNome(@Param("nome") String nome, @Param("id") Long id);
+
 }

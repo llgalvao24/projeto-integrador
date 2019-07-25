@@ -1,8 +1,7 @@
 package br.com.helpets.helpetsapi.comentario;
 
-import br.com.helpets.helpetsapi.administrador.Administrador;
-import br.com.helpets.helpetsapi.padrinho.Padrinho;
 import br.com.helpets.helpetsapi.post.Post;
+import br.com.helpets.helpetsapi.usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -33,12 +32,8 @@ public class Comentario implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("comentarios")
     @JoinColumn
-    private Administrador administrador;
+    private Usuario usuario;
 
-    @ManyToOne
-    @JsonIgnoreProperties("comentarios")
-    @JoinColumn
-    private Padrinho padrinho;
 
     @ManyToOne
     @JsonIgnoreProperties("comentarios")

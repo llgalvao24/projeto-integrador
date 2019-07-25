@@ -1,7 +1,7 @@
 package br.com.helpets.helpetsapi.doacao;
 
 import br.com.helpets.helpetsapi.animal.Animal;
-import br.com.helpets.helpetsapi.padrinho.Padrinho;
+import br.com.helpets.helpetsapi.usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -39,7 +39,7 @@ public class Doacao implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("doacaos")
     @JoinColumn
-    private Padrinho padrinho;
+    private Usuario usuario;
 
     @ManyToOne
     @JsonIgnoreProperties("doacaos")

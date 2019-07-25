@@ -1,19 +1,19 @@
-package br.com.helpets.helpetsapi.perfil;
+package br.com.helpets.helpetsapi.usuario;
 
-import br.com.helpets.helpetsapi.administrador.Administrador;
-import br.com.helpets.helpetsapi.padrinho.Padrinho;
+import br.com.helpets.helpetsapi.comentario.Comentario;
+import br.com.helpets.helpetsapi.post.Post;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Data
-
 @Entity
-@Table(name = "perfil")
-public class Perfil implements Serializable {
+@Table(name = "usuário")
+public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -57,9 +57,26 @@ public class Perfil implements Serializable {
     @Column(name = "dataNascimento")
     private Date dataNascimento;
 
-    @OneToOne(mappedBy = "perfil")
-    private Administrador administrador;
+    @NotNull
+    @Column(name = "imagem")
+    private String imagem;
 
-    @OneToOne(mappedBy = "perfil")
-    private Padrinho padrinho;
+    @NotNull
+    @Column(name = "frequencia")
+    private java.sql.Date frequencia;
+
+    @NotNull
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @NotNull
+    @Column(name = "senha", nullable = false)
+    private String senha;
+
+    // Lembrar de colocar um IF no front para o acesso do admin
+    @OneToMany
+    private Set<Post> posts;
+
+    @OneToMany
+    private Set<Comentario> comentarios;
 }

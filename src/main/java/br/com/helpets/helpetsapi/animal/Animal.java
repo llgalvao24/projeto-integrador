@@ -1,15 +1,13 @@
 package br.com.helpets.helpetsapi.animal;
 
 import br.com.helpets.helpetsapi.doacao.Doacao;
-import br.com.helpets.helpetsapi.padrinho.Padrinho;
+import br.com.helpets.helpetsapi.usuario.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -56,7 +54,7 @@ public class Animal implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("animals")
     @JoinColumn
-    private Padrinho padrinho;
+    private Usuario usuario;
 
     @OneToMany(mappedBy = "animal")
     private Set<Doacao> doacoes;
