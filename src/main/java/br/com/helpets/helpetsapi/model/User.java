@@ -2,6 +2,7 @@ package br.com.helpets.helpetsapi.model;
 
 import br.com.helpets.helpetsapi.model.Comentario;
 import br.com.helpets.helpetsapi.model.Post;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,7 +23,20 @@ public class User implements Serializable {
     private Long id;
 
     @NotNull
-//    @Column(unique = true)
+    @Column(name = "username")
+    private String username;
+
+    @NotNull
+    @Column(name = "password")
+    @JsonIgnore
+    private String password;
+
+    @NotNull
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @NotNull
+    @Column(name = "cpf")
     private String cpf;
 
     @NotNull
@@ -34,48 +48,40 @@ public class User implements Serializable {
     private String lastName;
 
     @NotNull
-    @Column(name = "username")
-    private String username;
-
-    @NotNull
     @Column(name = "address")
     private String address;
 
     @NotNull
-    @Column(name = "bairro")
-    private String bairro;
+    @Column(name = "neighborhood")
+    private String neighborhood;
 
     @NotNull
     @Column(name = "city")
     private String city;
 
     @NotNull
-    @Column(name = "")
-    private String estado;
+    @Column(name = "state")
+    private String state;
 
     @NotNull
-    @Column(name = "cep")
-    private String cep;
+    @Column(name = "zip_code")
+    private String zipCode;
 
     @NotNull
-    @Column(name = "dataNascimento")
-    private Date dataNascimento;
+    @Column(name = "birth_date")
+    private Date birthDate;
 
     @NotNull
-    @Column(name = "imagem")
-    private String imagem;
+    @Column(name = "phone")
+    private String phone;
 
     @NotNull
-    @Column(name = "frequencia")
-    private Date frequencia;
+    @Column(name = "image")
+    private String image;
 
     @NotNull
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @NotNull
-    @Column(name = "senha", nullable = false)
-    private String senha;
+    @Column(name = "frequency")
+    private Date frequency;
 
     // Lembrar de colocar um IF no front para o acesso do admin
     @OneToMany

@@ -19,7 +19,7 @@ public class UserDto {
     private String neighborhood;
     private String city;
     private String state;
-    private String cep;
+    private String zipCode;
     private Date birthDate;
     private String phone;
     private String image;
