@@ -4,16 +4,18 @@
 @import 'normalize.css';
 @import 'reset.css';
 @import 'responsivo.css';
-@import 'contato.css';
 @import 'sobre.css';
 @import 'pets.css';
-@import 'portfolio.css';
 @import 'login.css';
 @import 'util.css';
 
 
 .logo {
-	width: 100px;
+	
+	
+	max-width: 150px;
+	max-height: 100px ;
+	
 }
 
 body {
@@ -71,7 +73,7 @@ img {
 .btn {
 	border: 3px solid #005073;
 	padding: 10px 30px;
-	color: #ffc372;
+	color: #005073;
 	font-size: 14px;
 	line-height: 20px;
 	text-transform: uppercase;
@@ -81,13 +83,13 @@ img {
 }
 
 .btn:hover {
-	color: #bd7f42;
-	border-color: #005073;
+	color: #fff;
+	border-color: #fff;
 }
 
 .btn.btn-preto:hover {
-	color: #005073;
-	border-color: #005073;
+	color: #bd7f42;
+	border-color: #bd7f42;
 }
 
 .subtitulo {
@@ -136,7 +138,7 @@ img {
 	top: 0;
 	width: 100%;
 	background: #bd7f42; /* Amarelo */
-	padding: 15px 0;
+	padding: 5px 0;
 	z-index: 10;
 }
 
@@ -147,7 +149,7 @@ img {
 .header_menu ul li {
 	display: inline-block;
 	margin-left: 25px;
-	margin-top: 20px;
+	margin-top: 29px;
 }
 
 .header_menu ul li a {
@@ -242,22 +244,23 @@ img {
 }
 
 
-/*Produtos*/
+/*animais*/
 
-.produtos {
+.animais {
 	padding: 60px 0;
+	color: #fff;
 }
 
-.produtos_lista li{
+.animais_lista li{
 	background: #bd7f42;
 	text-align: center;
 }
 
-.produtos_lista li img {
+.animais_lista li img {
 	margin: 0 auto;
 }
 
-.produtos_lista li h3{
+.animais_lista li h3{
 	font-weight: bold;
 	font-size: 18px;
 	line-height: 25px;
@@ -266,7 +269,7 @@ img {
 	margin-top: 20px;
 }
 
-.produtos_lista li h3:after{
+.animais_lista li h3:after{
 	content: "";
 	display: block;
 	width: 60px;
@@ -275,11 +278,11 @@ img {
 	margin: 2px auto;
 }
 
-.produtos_lista li p {
+.animais_lista li p {
 	padding: 10px 20px 20px 20px;
 }
 
-.produtos_icone {
+.animais_icone {
 	background: #b9b9b9;
 	padding: 20px;
 }
@@ -440,6 +443,9 @@ img {
 	width: 100%;
 	background: #bd7f42;
 	padding: 20px 0;
+}
+.grid-16 {
+	color: #fff;
 }
 
 /*Animações*/
