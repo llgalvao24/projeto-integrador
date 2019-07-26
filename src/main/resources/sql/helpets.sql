@@ -60,7 +60,7 @@ alter table animal
 add foreign key (fk_padrinho)
 references padrinho(id_padrinho);
 
-create table doacao(
+create table donation(
 	id_doacao integer not null auto_increment,
     fk_padrinho integer,
     fk_animal integer,
@@ -71,11 +71,11 @@ create table doacao(
     primary key (id_doacao)
 );
 
-alter table doacao
+alter table donation
 add foreign key (fk_padrinho)
 references padrinho(id_padrinho);
 
-alter table doacao
+alter table donation
 add foreign key (fk_animal)
 references animal(id_animal);
 
@@ -93,7 +93,7 @@ alter table post
 add foreign key (fk_administrador)
 references administrador(id_admin);
 
-create table comentario(
+create table comment(
 	id_comentario integer not null auto_increment,
     fk_padrinho integer,
     fk_post integer,
@@ -102,10 +102,10 @@ create table comentario(
     primary key (id_comentario)
 );
 
-alter table comentario
+alter table comment
 add foreign key (fk_padrinho)
 references padrinho(id_padrinho);
 
-alter table comentario
+alter table comment
 add foreign key (fk_post)
 references post(id_post);
