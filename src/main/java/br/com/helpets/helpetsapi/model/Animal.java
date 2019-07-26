@@ -1,11 +1,15 @@
 package br.com.helpets.helpetsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -20,46 +24,42 @@ public class Animal implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "animal_tipo", nullable = false)
-    private String animaTipo;
+    @Column(name = "type", nullable = false)
+    private String type;
 
     @NotNull
     @Column(name = "animal_nome", nullable = false)
-    private String animalNome;
+    private String animalName;
 
     @NotNull
-    @Column(name = "idade", nullable = false)
-    private Integer idade;
+    @Column(name = "age", nullable = false)
+    private Integer age;
 
     @NotNull
-    @Column(name = "raca", nullable = false)
-    private String raca;
+    @Column(name = "breed", nullable = false)
+    private String breed;
 
     @NotNull
-    @Column(name = "porte", nullable = false)
-    private String porte;
+    @Column(name = "size", nullable = false)
+    private String size;
 
     @NotNull
-    @Column(name = "cor_principal", nullable = false)
-    private String corPrincipal;
+    @Column(name = "main_color", nullable = false)
+    private String mainColor;
 
-    @Column(name = "peso", nullable = false)
-    private Double peso;
+    @Column(name = "weight", nullable = false)
+    private Double weight;
 
-    @Column(name = "vacina", nullable = false)
-    private Boolean vacina;
+    @Column(name = "vaccine", nullable = false)
+    private Boolean vaccine;
 
     @ManyToOne
     @JsonIgnoreProperties("animals")
     @JoinColumn
     private User user;
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @OneToMany(mappedBy = "animal")
-    private Set<Doacao> doacoes;
-
-    /* TODO - Testar anotações
-    @ManyToOne
-    @JoinColumn
-    private Padrinho padrinho;
-    */
+    private Set<Donation> donations = new HashSet<>();
 }

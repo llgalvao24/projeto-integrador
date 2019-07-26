@@ -13,7 +13,7 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "update Animal u set u.animalNome = :animalNome where u.id = :id")
-    void updateNome(@Param("animalNome") String animalNome, @Param("id") Long id);
+    @Query(value = "update Animal u set u.animalName= :animalName where u.id = :id")
+    void updateName(@Param("animalName") String animalName, @Param("id") Long id);
 
 }

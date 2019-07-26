@@ -19,28 +19,28 @@ public class AnimalController {
     // CREATE
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/animais")
+    @PostMapping("/animals")
     public Animal save(@Valid @RequestBody Animal animal){
         return animalRepository.save(animal);
     }
 
     // READ
 
-    @GetMapping("/animais")
+    @GetMapping("/animals")
     public List<Animal> findAll(){
         return animalRepository.findAll();
     }
 
     // UPDATE
 
-    @PatchMapping("/animais/atualiza/{id}")
-    public void updateNome(@PathVariable Long id, @RequestParam String animalNome){
-        animalRepository.updateNome(animalNome,id);
+    @PatchMapping("/animals/update/{id}")
+    public void updateName(@PathVariable Long id, @RequestParam String animalName){
+        animalRepository.updateName(animalName,id);
     }
 
     // DELETE
 
-    @DeleteMapping("/animais/{id}")
+    @DeleteMapping("/animals/{id}")
     public void delete(@PathVariable Long id){
         animalRepository.deleteById(id);
     }

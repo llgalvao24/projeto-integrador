@@ -25,5 +25,5 @@ public class UserDto {
     private String image;
     private Date frequency;
     private Set<Post> posts;
-    private Set<Comentario> comentarios;
+    private Set<Comment> comments ;
 }

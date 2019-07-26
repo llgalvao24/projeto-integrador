@@ -1,0 +1,15 @@
+.page-cadastro label,
+.page-cadastro h1 {
+    font-family: Arial, Helvetica, sans-serif;
+
+    color:#005073;
+}
+
+.page-cadastro .btn{
+    background-color: #005073;
+
+}
+.page-cadastro .btn:hover {
+
+    background-color: #bd7f42;
+}

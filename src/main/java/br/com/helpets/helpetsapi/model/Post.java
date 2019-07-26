@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Data
-@EqualsAndHashCode(exclude = "comentarios")
+@EqualsAndHashCode(exclude = "comments")
 
 @Entity
 @Table(name = "post")
@@ -26,15 +26,15 @@ public class Post implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "titulo", nullable = false)
-    private String titulo;
+    @Column(name = "title", nullable = false)
+    private String title;
 
-    @Column(name = "post_imagem")
-    private String postImagem;
+    @Column(name = "post_image")
+    private String postImage;
 
     @NotNull
-    @Column(name = "conteudo", nullable = false)
-    private String conteudo;
+    @Column(name = "content", nullable = false)
+    private String content;
 
     @NotNull
     @Column(name = "post_data", nullable = false)
@@ -46,15 +46,15 @@ public class Post implements Serializable {
     private User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private Set<Comentario> comentarios;
+    private Set<Comment> comments;
 
-    public Post(String titulo, String postImagem, String conteudo, Instant postData, User user, Comentario comentarios){
-        this.titulo = titulo;
-        this.postImagem = postImagem;
-        this.conteudo = conteudo;
+    public Post(String title, String postImage, String content, Instant postData, User user, Comment comments){
+        this.title = title;
+        this.postImage = postImage;
+        this.content = content;
         this.postData = postData;
         this.user = user;
-        this.comentarios = Stream.of(comentarios).collect(Collectors.toSet());
-        this.comentarios.forEach(x -> x.setPost(this));
+        this.comments = Stream.of(comments).collect(Collectors.toSet());
+        this.comments.forEach(x -> x.setPost(this));
     }
 }
