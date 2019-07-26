@@ -16,8 +16,7 @@
 
 	<link rel="stylesheet" href="assets/css/style.css">
 	<script src="assets/js/libs/modernizr.custom.45655.js"></script>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"
-		id="bootstrap-css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 
 	<link rel="stylesheet" type="text/css" href="assets/css/util.css">
@@ -34,10 +33,18 @@
 			</a>
 			<nav class="grid-12 header_menu">
 				<ul>
-					<li><a href="sobre.html">Sobre</a></li>
-					<li><a href="pets.html">Pets</a></li>
-					<li><a href="login.html">Login</a></li>
-					<li><a href="contato.html">Contato</a></li>
+					<li>
+						<a href="sobre.html">Sobre</a>
+					</li>
+					<li>
+						<a href="pets.html">Pets</a>
+					</li>
+					<li>
+						<a href="login.html">Login</a>
+					</li>
+					<li>
+						<a href="contato.html">Contato</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
@@ -48,217 +55,227 @@
 	<br>
 	<div class="page-cadastro">
 
-	
-
-	<div class="container">
-		<h1 class="text-center">CADASTRO</h1>
-		<form class="form-horizontal">
-			<fieldset>
 
 
-				<!-- Text input-->
-				<div class="form-group">
-
-					<label class="col-md-3 control-label" for="Nome">Nome <h11>*</h11></label>
-					<div class="col-md-6">
-						<input id="Nome" name="Nome" placeholder="" class="form-control input-md" required=""
-							type="text">
-					</div>
-
-				</div>
-
-				<div class="form-group">
-
-					<label class="col-md-3 control-label" for="Nome">Sobrenome <h11>*</h11></label>
-					<div class="col-md-6">
-						<input id="Sobrenome" name="Sobrenome" placeholder="" class="form-control input-md" required=""
-							type="text">
-					</div>
-
-				</div>
-
-				<!-- Text input-->
-				<div class="form-group">
-					<label class="col-md-3 control-label" for="cpf">CPF <h11>*</h11></label>
-					<div class="col-md-6">
-						<input id="cpf" name="cpf" placeholder="Apenas números" class="form-control input-md"
-							required="" type="text" maxlength="11" pattern="[0-9]+$">
-					</div>
-
-				</div>
-
-				<div class="form-group">
-
-					<label class="col-md-3 control-label" for="Nome">Nascimento<h11>*</h11></label>
-					<div class="col-md-6">
-						<input id="dtnasc" name="dtnasc" placeholder="DD/MM/AAAA" class="form-control input-md"
-							required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)"
-							onBlur="showhide()">
-					</div>
-
-				</div>
-
-				<div class="form-group">
+		<div class="container">
+			<h1 class="text-center">CADASTRO</h1>
+			<form class="form-horizontal">
+				<fieldset>
 
 
-					<label class="col-md-3 control-label" for="prependedtext">Telefone <h11>*</h11></label>
-					<div class="col-md-6">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-							<input id="prependedtext" name="prependedtext" class="form-control"
-								placeholder="XX XXXXX-XXXX" required="" type="text" maxlength="13"
-								pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$"
-								OnKeyPress="formatar('## #####-####', this)">
-						</div>
-					</div>
+					<!-- Text input-->
+					<div class="form-group">
 
-
-				</div>
-
-
-
-				<!-- Prepended text-->
-				<div class="form-group">
-					<label class="col-md-3 control-label" for="prependedtext">Email <h11>*</h11></label>
-					<div class="col-md-6">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-							<input id="prependedtext" name="prependedtext" class="form-control"
-								placeholder="email@email.com" required="" type="text"
-								pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-						</div>
-					</div>
-				</div>
-
-
-				<!-- Search input-->
-				<div class="form-group">
-					<label class="col-md-3 control-label" for="CEP">CEP <h11>*</h11></label>
-					<div class="col-md-4">
-						<input id="cep" name="cep" placeholder="Apenas números" class="form-control input-md"
-							required="" value="" type="search" maxlength="8" pattern="[0-9]+$">
-					</div>
-					<div class="col-md-2">
-						<button type="button" class="btn btn-primary float-right"
-							onclick="pesquisacep(cep.value)">Pesquisar</button>
-					</div>
-				</div>
-
-				<!-- Prepended text-->
-				<div class="form-group">
-					<label class="col-md-3 control-label" for="prependedtext">Endereço</label>
-					<div class="col-md-6">
-						<div class="input-group">
-							<span class="input-group-addon">Rua</span>
-							<input id="rua" name="rua" class="form-control" placeholder="" required=""
-								readonly="readonly" type="text">
-						</div>
-
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-md-3 control-label"></label>
-					<div class="col-md-6">
-						<div class="input-group">
-							<span class="input-group-addon">Nº <h11>*</h11></span>
-							<input id="numero" name="numero" class="form-control" placeholder="" required=""
-								type="text">
-						</div>
-
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-md-3 control-label" for="prependedtext"></label>
-					<div class="col-md-6">
-						<div class="input-group">
-							<span class="input-group-addon">Bairro</span>
-							<input id="bairro" name="bairro" class="form-control" placeholder="" required=""
-								readonly="readonly" type="text">
-						</div>
-
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-md-3 control-label" for="prependedtext"></label>
-					<div class="col-md-6">
-						<div class="input-group">
-							<span class="input-group-addon">Cidade</span>
-							<input id="cidade" name="cidade" class="form-control" placeholder="" required=""
-								readonly="readonly" type="text">
-						</div>
-
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-md-3 control-label" for="prependedtext"></label>
-					<div class="col-md-6">
-						<div class="input-group">
-							<span class="input-group-addon">Estado</span>
-							<input id="estado" name="estado" class="form-control" placeholder="" required=""
-								readonly="readonly" type="text">
-						</div>
-
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-md-3 control-label" for="prependedtext"></label>
-					<div class="col-md-6">
-						<div class="input-group">
-							<span class="input-group-addon">Complemento</span>
-							<input id="complemento" name="complemento" class="form-control" type="text">
+						<label class="col-md-3 control-label" for="Nome">Nome
+							<h11>*</h11>
+						</label>
+						<div class="col-md-6">
+							<input id="Nome" name="Nome" placeholder="" class="form-control input-md" required="" type="text">
 						</div>
 
 					</div>
 
+					<div class="form-group">
 
-				</div>
-				<div class="form-group">
+						<label class="col-md-3 control-label" for="Nome">Sobrenome
+							<h11>*</h11>
+						</label>
+						<div class="col-md-6">
+							<input id="Sobrenome" name="Sobrenome" placeholder="" class="form-control input-md" required="" type="text">
+						</div>
 
-					<label class="col-md-3 control-label" for="usuario">Usuário <h11>*</h11></label>
-					<div class="col-md-6">
-						<input id="usuario" name="usuario" placeholder="" class="form-control input-md" required=""
-							type="text">
-					</div>
-				</div>
-
-				<div class="form-group">
-
-					<label class="col-md-3 control-label" for="senha">Senha <h11>*</h11></label>
-					<div class="col-md-6">
-						<input id="senha" name="senha" placeholder="" class="form-control input-md" required=""
-							type="text">
 					</div>
 
-				</div>
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="cpf">CPF
+							<h11>*</h11>
+						</label>
+						<div class="col-md-6">
+							<input id="cpf" name="cpf" placeholder="Apenas números" class="form-control input-md" required="" type="text" maxlength="11"
+							 pattern="[0-9]+$">
+						</div>
 
-
-
-
-
-
-
-				<!-- Button (Double) -->
-				<div class="form-group">
-					<div class="col-md-12 text-center">
-						<button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="Submit">Cadastrar</button>
 					</div>
-				</div>
+
+					<div class="form-group">
+
+						<label class="col-md-3 control-label" for="Nome">Nascimento
+							<h11>*</h11>
+						</label>
+						<div class="col-md-6">
+							<input id="dtnasc" name="dtnasc" placeholder="DD/MM/AAAA" class="form-control input-md" required="" type="text" maxlength="10"
+							 OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+						</div>
+
+					</div>
+
+					<div class="form-group">
+
+
+						<label class="col-md-3 control-label" for="prependedtext">Telefone
+							<h11>*</h11>
+						</label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-earphone"></i>
+								</span>
+								<input id="prependedtext" name="prependedtext" class="form-control" placeholder="XX XXXXX-XXXX" required="" type="text" maxlength="13"
+								 pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$" OnKeyPress="formatar('## #####-####', this)">
+							</div>
+						</div>
+
+
+					</div>
+
+
+
+					<!-- Prepended text-->
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="prependedtext">Email
+							<h11>*</h11>
+						</label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="glyphicon glyphicon-envelope"></i>
+								</span>
+								<input id="prependedtext" name="prependedtext" class="form-control" placeholder="email@email.com" required="" type="text"
+								 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+							</div>
+						</div>
+					</div>
+
+
+					<!-- Search input-->
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="CEP">CEP
+							<h11>*</h11>
+						</label>
+						<div class="col-md-4">
+							<input id="cep" name="cep" placeholder="Apenas números" class="form-control input-md" required="" value="" type="search"
+							 maxlength="8" pattern="[0-9]+$">
+						</div>
+						<div class="col-md-2">
+							<button type="button" class="btn btn-primary float-right" onclick="pesquisacep(cep.value)">Pesquisar</button>
+						</div>
+					</div>
+
+					<!-- Prepended text-->
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="prependedtext">Endereço</label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon">Rua</span>
+								<input id="rua" name="rua" class="form-control" placeholder="" required="" readonly="readonly" type="text">
+							</div>
+
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label"></label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon">Nº
+									<h11>*</h11>
+								</span>
+								<input id="numero" name="numero" class="form-control" placeholder="" required="" type="text">
+							</div>
+
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="prependedtext"></label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon">Bairro</span>
+								<input id="bairro" name="bairro" class="form-control" placeholder="" required="" readonly="readonly" type="text">
+							</div>
+
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="prependedtext"></label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon">Cidade</span>
+								<input id="cidade" name="cidade" class="form-control" placeholder="" required="" readonly="readonly" type="text">
+							</div>
+
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="prependedtext"></label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon">Estado</span>
+								<input id="estado" name="estado" class="form-control" placeholder="" required="" readonly="readonly" type="text">
+							</div>
+
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="prependedtext"></label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon">Complemento</span>
+								<input id="complemento" name="complemento" class="form-control" type="text">
+							</div>
+
+						</div>
+
+
+					</div>
+					<div class="form-group">
+
+						<label class="col-md-3 control-label" for="usuario">Usuário
+							<h11>*</h11>
+						</label>
+						<div class="col-md-6">
+							<input id="usuario" name="usuario" placeholder="" class="form-control input-md" required="" type="text">
+						</div>
+					</div>
+
+					<div class="form-group">
+
+						<label class="col-md-3 control-label" for="senha">Senha
+							<h11>*</h11>
+						</label>
+						<div class="col-md-6">
+							<input id="senha" name="senha" placeholder="" class="form-control input-md" required="" type="text">
+						</div>
+
+					</div>
+
+
+
+
+
+
+
+					<!-- Button (Double) -->
+					<div class="form-group">
+						<div class="col-md-12 text-center">
+							<button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="Submit">Cadastrar</button>
+						</div>
+					</div>
+
+		</div>
+
+
+
+		</fieldset>
+		</form>
+
 
 	</div>
-
-
-
-	</fieldset>
-	</form>
-
-
 	</div>
-</div>
 
 	<footer>
 		<div class="footer">
@@ -266,15 +283,15 @@
 
 				<div class="grid-8 footer_historia">
 					<h3>Nossa História</h3>
-					<p>Nossa existência é fruto da vontade de resolver os problemas de abandono de animais e também
-						daqueles que vivem quem situações de riscos.</p>
+					<p>Nossa existência é fruto da vontade de resolver os problemas de abandono de animais e encontrar quem queira nos ajuadar
+						nessa missão, apadrinhando ou adotando.</p>
 				</div>
 
 				<div class="grid-4 footer_contato">
 					<h3>Contato</h3>
 					<ul>
-						<li>- 11-2564-6425</li>
-						<li>- contato@helpets.org</li>
+						<li>- +55 11-2564-6425</li>
+						<li>- contato@helpets.com</li>
 						<li>- São Paulo - SP</li>
 					</ul>
 				</div>
@@ -282,12 +299,21 @@
 				<div class="grid-4 footer_redes">
 					<h3>Contato</h3>
 					<ul>
-						<li><a href="http://facebook.com" target="_blank"><img src="assets/img/facebook.png"
-									alt="Facebook Helpets"></a></li>
-						<li><a href="http://instagram.com" target="_blank"><img src="assets/img/instagram.png"
-									alt="Instagram Helpets"></a></li>
-						<li><a href="http://twitter.com" target="_blank"><img src="assets/img/twitter.png"
-									alt="Twitter Helpets"></a></li>
+						<li>
+							<a href="http://facebook.com" target="_blank">
+								<img src="assets/img/facebook.png" alt="Facebook Helpets">
+							</a>
+						</li>
+						<li>
+							<a href="http://instagram.com" target="_blank">
+								<img src="assets/img/instagram.png" alt="Instagram Helpets">
+							</a>
+						</li>
+						<li>
+							<a href="http://twitter.com" target="_blank">
+								<img src="assets/img/twitter.png" alt="Twitter Helpets">
+							</a>
+						</li>
 					</ul>
 				</div>
 
@@ -304,9 +330,12 @@
 
 
 
+
+
 	<script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
 
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/cadastro.js"></script>
 
 
 
