@@ -295,6 +295,7 @@ img {
 
 .call p{
 	margin-bottom: 20px;
+	color: #005073;
 }
 
 /*Portfólio*/
@@ -351,6 +352,7 @@ img {
 .qualidade_lista li {
 	text-align: center;
 	padding: 0 40px;
+	color: #005073;
 }
 
 .qualidade_lista li h3{
@@ -360,6 +362,7 @@ img {
 	text-transform: uppercase;
 	letter-spacing: .1em;
 	margin-top: 20px;
+	color: #005073;
 }
 
 .qualidade_lista li h3:after{
