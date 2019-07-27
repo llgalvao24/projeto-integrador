@@ -17,6 +17,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Transactional
     @Modifying
     @Query("UPDATE Comment c SET c.content =: content WHERE c.user")
-
      */
 }

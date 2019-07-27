@@ -28,7 +28,7 @@ public class Animal implements Serializable {
     private String type;
 
     @NotNull
-    @Column(name = "animal_nome", nullable = false)
+    @Column(name = "animal_name", nullable = false)
     private String animalName;
 
     @NotNull

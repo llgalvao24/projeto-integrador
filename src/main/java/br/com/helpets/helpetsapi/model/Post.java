@@ -1,13 +1,13 @@
 package br.com.helpets.helpetsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -46,15 +46,7 @@ public class Post implements Serializable {
     private User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private Set<Comment> comments;
-
-    public Post(String title, String postImage, String content, Instant postData, User user, Comment comments){
-        this.title = title;
-        this.postImage = postImage;
-        this.content = content;
-        this.postData = postData;
-        this.user = user;
-        this.comments = Stream.of(comments).collect(Collectors.toSet());
-        this.comments.forEach(x -> x.setPost(this));
-    }
 }

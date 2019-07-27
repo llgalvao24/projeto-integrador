@@ -1,52 +1,69 @@
 package br.com.helpets.helpetsapi.controller;
 
+import br.com.helpets.helpetsapi.exception.ResourceNotFoundException;
 import br.com.helpets.helpetsapi.model.Comment;
+import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.repository.CommentRepository;
+import br.com.helpets.helpetsapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1")
 public class CommentController {
 
-    private final CommentRepository commentRepository;
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Autowired
-    public CommentController(final CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
-    }
+    private UserRepository userRepository;
 
-    //C do CRUD - Criar comentário
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/comentarios")
-    public Comment save(@RequestBody Comment comment){
-        return commentRepository.save(comment);
-    }
-
-    //R do CRUD - Mostrar todos os comentários
-    @GetMapping("/comentarios")
-    public List<Comment> findAll(){
+    @GetMapping("/comments")
+    public List<Comment> getAllComments() {
         return commentRepository.findAll();
     }
 
-    //U do CRUD - Update de comentário por usuário
-    /* TODO - Update comentário - esperando classe Padrinho
-    TODO - path: usuario/usuarioId/cometario/comentarioId, variaveis: idUsuario e idComentario
-    @PatchMapping("/comments/update/{padrinho}")
-    public void updateByName(@PathVariable Padrinho padrinho, @RequestParam String texto){
-        comentarioRepository.updateComentariobyPadrinho(padrinho, texto);
-    }
-     */
-
-    //D do CRUD - deletar comentário
-    //TODO - path: usuario/usuarioId/cometario/comentarioId, variaveis: idUsuario e idComentario
-    @DeleteMapping("/comentarios/{id}")
-    public void delete(@PathVariable Long id){
-        commentRepository.deleteById(id);
+    @GetMapping("/comments/{id}")
+    public ResponseEntity<Comment> getCommentById(@PathVariable(value = "id") Long commentId)
+            throws ResourceNotFoundException {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Comment not found for this id: " + commentId));
+        return ResponseEntity.ok().body(comment);
     }
 
+    @PostMapping("/comments")
+    public Comment createComment(@Valid @RequestBody Comment comment) {
+        return commentRepository.save(comment);
+    }
 
+    @PutMapping("/comments/{id}")
+    public ResponseEntity<Comment> updateComment(@PathVariable(value = "id") Long commentId,
+                                           @Valid @RequestBody Comment commentDetails) throws ResourceNotFoundException {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Comment not found for this id: " + commentId));
+
+        comment.setContent(commentDetails.getContent());
+
+        final Comment updatedComment = commentRepository.save(comment);
+        return ResponseEntity.ok(updatedComment);
+    }
+
+    @DeleteMapping("/users/{id}/comments/{id}")
+    public Map<String, Boolean> deleteCommentByUser(@PathVariable(value = "id") Long userId,
+                                                    @PathVariable(value = "id") Long commentId)
+            throws ResourceNotFoundException {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found for this id: " + userId));
+
+        user.deleteComment(commentRepository.findById(commentId));
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
+    }
 }

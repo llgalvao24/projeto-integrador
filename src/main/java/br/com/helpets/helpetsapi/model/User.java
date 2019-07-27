@@ -28,7 +28,7 @@ public class User implements Serializable {
 
     @NotNull
     @Column(name = "password")
-    @JsonIgnore
+//    @JsonIgnore
     private String password;
 
     @NotNull
@@ -56,8 +56,8 @@ public class User implements Serializable {
     private String number;
 
     @NotNull
-    @Column(name = "neighborhood")
-    private String neighborhood;
+    @Column(name = "neighbourhood")
+    private String neighbourhood;
 
     @NotNull
     @Column(name = "city")
@@ -84,7 +84,7 @@ public class User implements Serializable {
 
     @NotNull
     @Column(name = "frequency")
-    private Date frequency;
+    private Long frequency;
 
     // Lembrar de colocar um IF no front para o acesso do admin
     @OneToMany
@@ -96,6 +96,16 @@ public class User implements Serializable {
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private Set<Comment> comments = new HashSet<>();
+
+    @OneToMany
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private Set<Animal> animals = new HashSet<>();
+
+    @OneToMany
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private Set<Donation> donations = new HashSet<>();
 
     public void addPost(Post post){
         posts.add(post);
@@ -111,5 +121,21 @@ public class User implements Serializable {
 
     public void deleteComment(Optional<Comment> comment){
         comments.remove(comment);
+    }
+
+    public void addAnimal(Animal animal){
+        animals.add(animal);
+    }
+
+    public void deleteAnimal(Optional<Animal> animal){
+        animals.remove(animal);
+    }
+
+    public void addDonation(Donation donation){
+        donations.add(donation);
+    }
+
+    public void deleteDonation(Optional<Donation> donation){
+        donations.remove(donations);
     }
 }

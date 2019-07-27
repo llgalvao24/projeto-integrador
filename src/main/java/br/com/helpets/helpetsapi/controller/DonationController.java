@@ -1,13 +1,16 @@
 package br.com.helpets.helpetsapi.controller;
 
+import br.com.helpets.helpetsapi.exception.ResourceNotFoundException;
 import br.com.helpets.helpetsapi.model.Donation;
 import br.com.helpets.helpetsapi.repository.DonationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -16,42 +19,50 @@ public class DonationController {
     @Autowired//Força a injeção de dependencia
     private DonationRepository donationRepository;
 
-
-    // Criar
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/doacao")
-    public Donation save(@RequestBody Donation donation){
-        return donationRepository.save(donation);// repository é o meud DB.
+    @GetMapping("/donations")
+    public List<Donation> getAllDonations() {
+        return donationRepository.findAll();
     }
 
-    // Read
-    @GetMapping("/doacao")
-    public List<Donation> findAll(){
-        return donationRepository.findAll(); //
+    @GetMapping("/donations/{id}")
+    public ResponseEntity<Donation> getDonationById(@PathVariable(value = "id") Long donationId)
+            throws ResourceNotFoundException {
+        Donation donation = donationRepository.findById(donationId)
+                .orElseThrow(() -> new ResourceNotFoundException("donation not found for this id: " + donationId));
+        return ResponseEntity.ok().body(donation);
     }
 
-
-    //Update com Lambida
-    @PutMapping(value="/doacao/{id}")
-    public ResponseEntity update(@PathVariable("id") long id,
-                                 @RequestBody Donation donation) {
-        return donationRepository.findById(id)
-                .map(record -> {
-//                    record.setRacao(donation.getRacao());
-//                    record.setBanhoTosa(donation.getBanhoTosa());
-//                    record.setMedicamento(donation.getMedicamento());
-                    Donation updated = donationRepository.save(record);
-                    return ResponseEntity.ok().body(updated);
-                }).orElse(ResponseEntity.notFound().build());
+    @PostMapping("/donations")
+    public Donation createDonation(@Valid @RequestBody Donation donation) {
+        return donationRepository.save(donation);
     }
 
-    // Delete
-    @DeleteMapping("/doacao/{id}")
-    public void delete(@PathVariable Long id){
-        donationRepository.deleteById(id);
+    @PutMapping("/donations/{id}")
+    public ResponseEntity<Donation> updateDonation(@PathVariable(value = "id") Long donationId,
+                                               @Valid @RequestBody Donation donationDetails) throws ResourceNotFoundException {
+        Donation donation = donationRepository.findById(donationId)
+                .orElseThrow(() -> new ResourceNotFoundException("donation not found for this id: " + donationId));
+
+        donation.setAccessory(donationDetails.getAccessory());
+        donation.setFood(donationDetails.getFood());
+        donation.setGroom(donationDetails.getGroom());
+        donation.setMedication(donationDetails.getMedication());
+
+        final Donation updatedDonation = donationRepository.save(donation);
+        return ResponseEntity.ok(updatedDonation);
     }
 
+    @DeleteMapping("/donations/{id}")
+    public Map<String, Boolean> deleteDonation(@PathVariable(value = "id") Long donationId)
+            throws ResourceNotFoundException {
+        Donation donation = donationRepository.findById(donationId)
+                .orElseThrow(() -> new ResourceNotFoundException("donation not found for this id: " + donationId));
 
+        donationRepository.delete(donation);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
+    }
 }
 
 

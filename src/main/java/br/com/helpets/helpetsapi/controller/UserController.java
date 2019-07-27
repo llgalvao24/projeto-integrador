@@ -5,7 +5,6 @@ import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.repository.CommentRepository;
 import br.com.helpets.helpetsapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +19,6 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private CommentRepository commentRepository;
 
     @GetMapping("/users")
     public List<User> getAllUsers() {
@@ -56,7 +52,7 @@ public class UserController {
         user.setFirstName(userDetails.getFirstName());
         user.setAddress(userDetails.getAddress());
         user.setNumber(userDetails.getNumber());
-        user.setNeighborhood(userDetails.getNeighborhood());
+        user.setNeighbourhood(userDetails.getNeighbourhood());
         user.setState(userDetails.getState());
         user.setCity(userDetails.getCity());
         user.setZipCode(userDetails.getZipCode());
@@ -78,19 +74,4 @@ public class UserController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
-
-    @DeleteMapping("/users/{id}/comments/{id}")
-    public Map<String, Boolean> deleteCommentByUser(@PathVariable(value = "id") Long userId,
-                                                    @PathVariable(value = "id") Long commentId)
-            throws ResourceNotFoundException {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found for this id: " + userId));
-
-        user.deleteComment(commentRepository.findById(commentId));
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
-    }
-
-
 }
