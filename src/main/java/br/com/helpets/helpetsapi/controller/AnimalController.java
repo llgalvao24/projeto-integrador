@@ -2,7 +2,9 @@ package br.com.helpets.helpetsapi.controller;
 
 import br.com.helpets.helpetsapi.exception.ResourceNotFoundException;
 import br.com.helpets.helpetsapi.model.Animal;
+import br.com.helpets.helpetsapi.model.Comment;
 import br.com.helpets.helpetsapi.repository.AnimalRepository;
+import br.com.helpets.helpetsapi.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,17 +21,18 @@ public class AnimalController {
     @Autowired
     private AnimalRepository animalRepository;
 
+    @Autowired
+    AnimalService animalService;
+
     @GetMapping("/animals")
     public List<Animal> getAllAnimals() {
         return animalRepository.findAll();
     }
 
     @GetMapping("/animals/{id}")
-    public ResponseEntity<Animal> getAnimalById(@PathVariable(value = "id") Long animalId)
-            throws ResourceNotFoundException {
-        Animal animal = animalRepository.findById(animalId)
-                .orElseThrow(() -> new ResourceNotFoundException("animal not found for this id: " + animalId));
-        return ResponseEntity.ok().body(animal);
+    public ResponseEntity<Animal> getAnimalById(@PathVariable(value = "id") Long animalId){
+        Animal obj = animalService.findAnimal(animalId);
+        return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping("/animals")
