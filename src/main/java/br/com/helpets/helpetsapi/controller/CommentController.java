@@ -28,7 +28,7 @@ public class CommentController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Comment> getAllComments() {
         return commentRepository.findAll();
     }
@@ -39,7 +39,7 @@ public class CommentController {
         return ResponseEntity.ok().body(obj);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Comment createComment(@Valid @RequestBody Comment comment) {
         return commentRepository.save(comment);
     }

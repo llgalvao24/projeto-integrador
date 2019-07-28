@@ -25,7 +25,7 @@ public class AnimalController {
     }
 
     @GetMapping("/animals/{id}")
-    public ResponseEntity<Animal> getanimalById(@PathVariable(value = "id") Long animalId)
+    public ResponseEntity<Animal> getAnimalById(@PathVariable(value = "id") Long animalId)
             throws ResourceNotFoundException {
         Animal animal = animalRepository.findById(animalId)
                 .orElseThrow(() -> new ResourceNotFoundException("animal not found for this id: " + animalId));
