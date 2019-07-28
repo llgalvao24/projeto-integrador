@@ -1,9 +1,10 @@
 package br.com.helpets.helpetsapi.controller;
 
 import br.com.helpets.helpetsapi.exception.ResourceNotFoundException;
+import br.com.helpets.helpetsapi.model.Comment;
 import br.com.helpets.helpetsapi.model.User;
-import br.com.helpets.helpetsapi.repository.CommentRepository;
 import br.com.helpets.helpetsapi.repository.UserRepository;
+import br.com.helpets.helpetsapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,17 +21,18 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/users")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId)
-            throws ResourceNotFoundException {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found for this id: " + userId));
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId){
+        User obj = userService.findUser(userId);
+        return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping("/users")
@@ -44,18 +46,11 @@ public class UserController {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id: " + userId));
 
-        user.setUsername(userDetails.getUsername());
-        user.setPassword(userDetails.getPassword());
         user.setEmail(userDetails.getEmail());
         user.setCpf(userDetails.getCpf());
         user.setLastName(userDetails.getLastName());
         user.setFirstName(userDetails.getFirstName());
         user.setAddress(userDetails.getAddress());
-        user.setNumber(userDetails.getNumber());
-        user.setNeighbourhood(userDetails.getNeighbourhood());
-        user.setState(userDetails.getState());
-        user.setCity(userDetails.getCity());
-        user.setZipCode(userDetails.getZipCode());
         user.setBirthDate(userDetails.getBirthDate());
         user.setImageUrl(userDetails.getImageUrl());
 

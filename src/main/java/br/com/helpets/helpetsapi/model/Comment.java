@@ -1,16 +1,22 @@
 package br.com.helpets.helpetsapi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
+import java.util.Objects;
 
 @Entity
-@Table(name = "comment")
-@Data
+@NoArgsConstructor
+@Getter @Setter
 public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,20 +26,40 @@ public class Comment implements Serializable {
     private Long id;
 
     @Lob
-    @Column(name = "content", nullable = false)
     private String content;
 
-    @NotNull
-    @Column(name = "comm_data", nullable = false)
-    private Instant commData;
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm")
+    private Date commData;
 
     @ManyToOne
-    @JsonIgnoreProperties("comments")
-    @JoinColumn
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
+    @Getter(AccessLevel.NONE)
     private User user;
 
     @ManyToOne
-    @JsonIgnoreProperties("comments")
-    @JoinColumn
+    @JsonIgnore
+    @JoinColumn(name = "post_id")
+    @Getter(AccessLevel.NONE)
     private Post post;
+
+    public Comment(String content, Date commData, User user, Post post) {
+        this.content = content;
+        this.commData = commData;
+        this.user = user;
+        this.post = post;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return id.equals(comment.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

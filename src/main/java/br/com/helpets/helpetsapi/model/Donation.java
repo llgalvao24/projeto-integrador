@@ -1,7 +1,11 @@
 package br.com.helpets.helpetsapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,7 +13,6 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "donation")
 public class Donation implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,29 +21,18 @@ public class Donation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(name = "food")
     private Long food;
-
-    @NotNull
-    @Column(name = "groom")
     private Long groom;
-
-    @NotNull
-    @Column(name = "medication")
     private Long medication;
-
-    @NotNull
-    @Column(name = "accessory")
     private Long accessory;
 
     @ManyToOne
-    @JsonIgnoreProperties("donations")
-    @JoinColumn
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JsonIgnoreProperties("donations")
-    @JoinColumn
+    @JsonIgnore
+    @JoinColumn(name = "animal_id")
     private Animal animal;
 }

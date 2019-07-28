@@ -5,6 +5,7 @@ import br.com.helpets.helpetsapi.model.Comment;
 import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.repository.CommentRepository;
 import br.com.helpets.helpetsapi.repository.UserRepository;
+import br.com.helpets.helpetsapi.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,11 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/comments")
 public class CommentController {
+
+    @Autowired
+    private CommentService commentService;
 
     @Autowired
     private CommentRepository commentRepository;
@@ -24,25 +28,23 @@ public class CommentController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/comments")
+    @GetMapping("/")
     public List<Comment> getAllComments() {
         return commentRepository.findAll();
     }
 
-    @GetMapping("/comments/{id}")
-    public ResponseEntity<Comment> getCommentById(@PathVariable(value = "id") Long commentId)
-            throws ResourceNotFoundException {
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new ResourceNotFoundException("Comment not found for this id: " + commentId));
-        return ResponseEntity.ok().body(comment);
+    @GetMapping("/{id}")
+    public ResponseEntity<Comment> getCommentById(@PathVariable(value = "id") Long commentId) {
+        Comment obj = commentService.findComment(commentId);
+        return ResponseEntity.ok().body(obj);
     }
 
-    @PostMapping("/comments")
+    @PostMapping("/")
     public Comment createComment(@Valid @RequestBody Comment comment) {
         return commentRepository.save(comment);
     }
 
-    @PutMapping("/comments/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Comment> updateComment(@PathVariable(value = "id") Long commentId,
                                            @Valid @RequestBody Comment commentDetails) throws ResourceNotFoundException {
         Comment comment = commentRepository.findById(commentId)

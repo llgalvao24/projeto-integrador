@@ -1,19 +1,18 @@
 package br.com.helpets.helpetsapi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import br.com.helpets.helpetsapi.model.enums.Profile;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
-@Data
 @Entity
-@Table(name = "user")
+@Getter @Setter @EqualsAndHashCode
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,90 +21,67 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(name = "username")
-    private String username;
-
-    @NotNull
-    @Column(name = "password")
-//    @JsonIgnore
-    private String password;
-
-    @NotNull
-    @Column(name = "email", nullable = false)
+    private String firstName;
+    private String lastName;
     private String email;
-
-    @NotNull
-    @Column(name = "cpf")
     private String cpf;
 
-    @NotNull
-    @Column(name = "first_name")
-    private String firstName;
+    @JsonFormat(pattern="dd/MM/yyyy")
+    private LocalDate birthDate;
 
-    @NotNull
-    @Column(name = "last_name")
-    private String lastName;
-
-    @NotNull
-    @Column(name = "address")
-    private String address;
-
-    @NotNull
-    @Column(name = "number")
-    private String number;
-
-    @NotNull
-    @Column(name = "neighbourhood")
-    private String neighbourhood;
-
-    @NotNull
-    @Column(name = "city")
-    private String city;
-
-    @NotNull
-    @Column(name = "state")
-    private String state;
-
-    @NotNull
-    @Column(name = "zip_code")
-    private String zipCode;
-
-    @NotNull
-    @Column(name = "birth_date")
-    private Date birthDate;
-
-    @NotNull
-    @Column(name = "phone")
     private String phone;
-
-    @Column(name = "image_url")
     private String imageUrl;
-
-    @NotNull
-    @Column(name = "frequency")
     private Long frequency;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private LoginUser loginUser;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Address address;
+
+    @ElementCollection(fetch=FetchType.EAGER)
+    @CollectionTable(name="PROFILES")
+    private Set<Integer> profiles = new HashSet<>();
+
     // Lembrar de colocar um IF no front para o acesso do admin
-    @OneToMany
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "user")
     private Set<Post> posts = new HashSet<>();
 
     @OneToMany
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
     private Set<Comment> comments = new HashSet<>();
 
     @OneToMany
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
     private Set<Animal> animals = new HashSet<>();
 
     @OneToMany
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
     private Set<Donation> donations = new HashSet<>();
+
+    public User(){
+        addProfile(Profile.USER);
+    }
+
+    public User( String firstName, String lastName, String email, String cpf, LocalDate birthDate, String phone,
+                String imageUrl, Long frequency, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.cpf = cpf;
+        this.birthDate = birthDate;
+        this.phone = phone;
+        this.imageUrl = imageUrl;
+        this.frequency = frequency;
+        this.address = address;
+        addProfile(Profile.USER);
+    }
+
+    public Set<Profile> getProfiles() {
+        return profiles.stream().map(x -> Profile.toEnum(x)).collect(Collectors.toSet());
+    }
+
+    public void addProfile(Profile profile) {
+        profiles.add(profile.getCode());
+    }
+
 
     public void addPost(Post post){
         posts.add(post);

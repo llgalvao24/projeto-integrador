@@ -33,19 +33,19 @@ public class CommentControllerIntegrationTest {
         return "http://localhost:" + port + "/api/v1" + path;
     }
 
-    @Test
-    public void testaCriacaoDeUmNovoUsuario() {
-
-        // "Chamada da API"
-        ResponseEntity<Comment> postResponse =
-                testRestTemplate.postForEntity(
-                        getRootUrl("/usuarios"),
-                        CommentMock.getCommentMock(),
-                        Comment.class);
-
-        assertNotNull(postResponse);
-        assertEquals(201,
-                postResponse.getStatusCodeValue());
-    }
+//    @Test
+//    public void testaCriacaoDeUmNovoUsuario() {
+//
+//        // "Chamada da API"
+//        ResponseEntity<Comment> postResponse =
+//                testRestTemplate.postForEntity(
+//                        getRootUrl("/usuarios"),
+//                        CommentMock.getCommentMock(),
+//                        Comment.class);
+//
+//        assertNotNull(postResponse);
+//        assertEquals(201,
+//                postResponse.getStatusCodeValue());
+//    }
 
 }

@@ -1,10 +1,8 @@
 package br.com.helpets.helpetsapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,9 +10,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
 @Entity
-@Table(name = "animal")
+@NoArgsConstructor
+@Getter @Setter @EqualsAndHashCode
 public class Animal implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,43 +21,35 @@ public class Animal implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(name = "type", nullable = false)
     private String type;
-
-    @NotNull
-    @Column(name = "animal_name", nullable = false)
     private String animalName;
-
-    @NotNull
-    @Column(name = "age", nullable = false)
     private Integer age;
-
-    @NotNull
-    @Column(name = "breed", nullable = false)
     private String breed;
-
-    @NotNull
-    @Column(name = "size", nullable = false)
     private String size;
-
-    @NotNull
-    @Column(name = "main_color", nullable = false)
     private String mainColor;
-
-    @Column(name = "weight", nullable = false)
     private Double weight;
-
-    @Column(name = "vaccine", nullable = false)
     private Boolean vaccine;
 
     @ManyToOne
-    @JsonIgnoreProperties("animals")
-    @JoinColumn
+    @JsonIgnore
+//    @JsonIgnoreProperties("animals")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     @OneToMany(mappedBy = "animal")
     private Set<Donation> donations = new HashSet<>();
+
+    public Animal(String type, String animalName, Integer age, String breed,
+                  String size, String mainColor, Double weight, Boolean vaccine, User user) {
+        this.type = type;
+        this.animalName = animalName;
+        this.age = age;
+        this.breed = breed;
+        this.size = size;
+        this.mainColor = mainColor;
+        this.weight = weight;
+        this.vaccine = vaccine;
+        this.user = user;
+    }
 }

@@ -7,10 +7,10 @@ import java.util.Locale;
 
 public class CommentMock {
 
-    public static Comment getCommentMock(){
-        Comment comment = new Comment();
-        Faker faker = new Faker(new Locale("pt-BR"));
-        comment.setContent(faker.hitchhikersGuideToTheGalaxy().quote());
-        return comment;
-    }
+//    public static Comment getCommentMock(){
+//        Comment comment = new Comment();
+//        Faker faker = new Faker(new Locale("pt-BR"));
+//        comment.setContent(faker.hitchhikersGuideToTheGalaxy().quote());
+//        return comment;
+//    }
 }
