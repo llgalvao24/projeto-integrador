@@ -1,0 +1,49 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Lista de usuários</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Sobrenome</th>
+        <th>CPF</th>
+        <th>Data de nascimento</th>
+        <th>Telefone</th>
+        <th>Email</th>
+        <th>CEP</th>
+        <th>Endereço</th>
+        <th>Numero</th>
+        <th>Bairro</th>
+        <th>Cidade</th>
+        <th>Estado</th>
+        <th>Nome de usuário</th>
+        <th>Senha</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users | async">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.cpf}}</td>
+        <td>{{user.birthDate}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.zipCode}}</td>
+        <td>{{user.address}}</td>
+        <td>{{user.number}}</td>
+        <td>{{user.neighborhood}}</td>
+        <td>{{user.city}}</td>
+        <td>{{user.state}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.password}}</td>
+        <td><button (click)="deleteUser(user.id)" class="btn btn-danger">Deletar</button>
+          <button (click)="userDetails(user.id)" class="btn btn-info" style="margin-left: 10px">Detalhes</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

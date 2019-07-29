@@ -1,0 +1,51 @@
+<h2>Detalhes do usuário</h2>
+
+<hr/>
+<div *ngIf="user">
+  <div>
+    <label><b>Nome: </b></label> {{user.firstName}}
+  </div>
+  <div>
+    <label><b>Sobrenome: </b></label> {{user.lastName}}
+  </div>
+  <div>
+    <label><b>CPF: </b></label> {{user.cpf}}
+  </div>
+  <div>
+    <label><b>Data de nascimento: </b></label> {{user.birthDate}}
+  </div>
+  <div>
+    <label><b>Telefone: </b></label> {{user.phone}}
+  </div>
+  <div>
+    <label><b>Email: </b></label> {{user.email}}
+  </div>
+  <div>
+    <label><b>CEP: </b></label> {{user.zipCode}}
+  </div>
+  <div>
+    <label><b>Endereço: </b></label> {{user.address}}
+  </div>
+  <div>
+    <label><b>Número: </b></label> {{user.number}}
+  </div>
+  <div>
+    <label><b>Bairro: </b></label> {{user.neighborhood}}
+  </div>
+  <div>
+    <label><b>Cidade: </b></label> {{user.city}}
+  </div>
+  <div>
+    <label><b>Estado: </b></label> {{user.state}}
+  </div>
+  <div>
+    <label><b>Nome de usuário: </b></label> {{user.username}}
+  </div>
+  <div>
+    <label><b>Senha: </b></label> {{user.password}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Voltar para lista de usuários</button><br>
