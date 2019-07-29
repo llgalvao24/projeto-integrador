@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Helpets</title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Adote ou apadrinhe um bichinho de estimação.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Helpets" />
+    <meta property="og:description" content="Adote um animal de estimação" />
+    <meta property="og:url" content="http://helpets.org" />
+    <meta property="og:image" content="http://helpets.org/img/logo.png" />
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/feed.css">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <script src="assets/js/libs/modernizr.custom.45655.js"></script>
+</head>
+
+<body>
+
+    <!-- Somente nesta página deve utilizar Bootstrap 4 -->
+
+    <header class="header">
+
+        <!-- Classes do Header dever valer para Bootstrap 4 e 3 -->
+
+        <div class="container">
+            <a href="index.html" class="grid-4">
+                <img class="logo" src="assets/img/logos.png" alt="Helpets">
+            </a>
+            <nav class="grid-12 header_menu">
+                <ul>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="pets.html">Pets</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+
+                    <li class="user">
+
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="padrinho.html">
+                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                    </a>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-12">
+                                            <a href="padrinho.html">Suzileia</a>
+                                        </div>
+                                        <div class="col-xs-12 col-12">
+                                            <button>Sair</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container gedf-wrapper">
+        <div class="row">
+            <div class="col-md-4 profile">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="profile-thumb">
+                            <img class="rounded-circle" width="100" src="https://picsum.photos/50/50" alt="">
+                        </div>
+                        <div class="h5">@Suzi</div>
+                        <div class="h7 text-muted">Nome completo : Suziléia de Lima</div>
+                        <div class="h7">Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java,
+                            Node.js,
+                            etc.
+                        </div>
+                    </div>
+
+                    <ul class="list-group list-group-flush meus-pets">
+                        <li class="list-group-item">
+                            <div class="h6 text-muted">Meus Pets</div>
+
+                            <div class="pet">
+
+                                <a href="#" data-toggle="modal" data-target="#modal-animais-1">
+                                    <img class="rounded-circle" width="36" height="36" src="assets/img/docat.jpg"
+                                        alt="">
+                                </a>
+
+                                <div class="modal fade" id="modal-animais-1" tabindex="-1" role="dialog"
+                                    aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title"><b>Nome</b></h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="info grid-5">
+                                                    <p><b>Tipo:</b>Catioro</p>
+                                                    <p><b>Idade:</b> 2 anos</p>
+                                                    <p><b>Raça:</b> Vira-lata</p>
+                                                    <p><b>Porte:</b> Médio</p>
+                                                    <p><b>Cor:</b> Marrom e branco</p>
+                                                    <p><b>Peso:</b> 13kg</p>
+                                                    <p><b>Vacinado:</b> Sim</p>
+                                                    <p>Resgatado tal dia...</p>
+                                                </div>
+                                                <h5><b>O que deseja doar?</b></h5>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox"> Ração
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox"> Banho/Tosa
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox"> Medicamentos/Vacinas
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox"> Acessórios
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary">ADOTAR</button>
+                                                <a href="https://www.paypal.com.br" target="_blank"
+                                                    class="btn btn-primary">DOAR</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="pet">
+                                <a href="#" data-toggle="modal" data-target="#modal-animais-1">
+                                    <img class="rounded-circle" width="36" height="36" src="assets/img/docat.jpg"
+                                        alt="">
+                                </a>
+                            </div>
+
+                            <div class="pet">
+                                <a href="#" data-toggle="modal" data-target="#modal-animais-1">
+                                    <img class="rounded-circle" width="36" height="36" src="assets/img/docat.jpg"
+                                        alt="">
+                                </a>
+                            </div>
+
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="col-md-8 gedf-main">
+
+                <!--- Post-->
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">@Administrador</div>
+                                    <div class="h7 text-muted">Administrador</div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                        <a class="dropdown-item" href="#">Editar</a>
+                                        <a class="dropdown-item" href="#">Excluir</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+                        <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
+
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa
+                            praesentium esse magnam nemo dolor
+                            sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Gostei</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comentar</a>
+                    </div>
+
+                    <div class="card gedf-card new-comment">
+                        <div class="card-body">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="posts" role="tabpanel"
+                                    aria-labelledby="posts-tab">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="message">post</label>
+                                        <textarea class="form-control" id="message" rows="3"
+                                            placeholder="Deixe seu comentário aqui"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="toolbar">
+                                <button type="submit" class="btn btn-primary float-right">Comentar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--- Comments-->
+
+                    <h3 class="title-comentarios">Últimos comentários</h3>
+
+                    <div class="card gedf-card comments">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2">
+                                        <img class="rounded-circle" width="30" src="https://picsum.photos/50/50" alt="">
+                                    </div>
+                                    <div class="ml-2">
+                                        <div class="h5 m-0">@Suzi</div>
+                                        <div class="h7 text-muted">Madrinha</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos
+                                ipsa
+                                praesentium esse magnam nemo dolor
+                                sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="card-link"><i class="fa fa-gittip"></i> Gostei</a>
+                            <a href="#" class="card-link"><i class="fa fa-comment"></i> Comentar</a>
+                        </div>
+                    </div>
+                    <!-- Comments-->
+
+                </div>
+                <!-- Post-->
+
+
+
+                <!--- Post-->
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">@Administrador</div>
+                                    <div class="h7 text-muted">Administrador</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+                        <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
+
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa
+                            praesentium esse magnam nemo dolor
+                            sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                    </div>
+                </div>
+                <!-- Post-->
+
+                <!--- Post-->
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">@Administrador</div>
+                                    <div class="h7 text-muted">Administrador</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+                        <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
+
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa
+                            praesentium esse magnam nemo dolor
+                            sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                    </div>
+                </div>
+                <!-- Post-->
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <div class="container">
+
+                <div class="grid-8 footer_historia">
+                    <h3>Nossa História</h3>
+                    <p>Nossa existência é fruto da vontade de resolver os problemas de abandono de animais e encontrar
+                        quem queira nos ajuadar nessa missão, apadrinhando ou adotando.</p>
+                </div>
+
+                <div class="grid-4 footer_contato">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li>- +55 11-2564-6425</li>
+                        <li>- contato@helpets.com</li>
+                        <li>- São Paulo - SP</li>
+                    </ul>
+                </div>
+
+                <div class="grid-4 footer_redes">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><a href="http://facebook.com" target="_blank"><img src="assets/img/facebook.png"
+                                    alt="Facebook Helpets"></a></li>
+                        <li><a href="http://instagram.com" target="_blank"><img src="assets/img/instagram.png"
+                                    alt="Instagram Helpets"></a></li>
+                        <li><a href="http://twitter.com" target="_blank"><img src="assets/img/twitter.png"
+                                    alt="Twitter Helpets"></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="copy">
+            <div class="container">
+                <p class="grid-16">Helpets 2019 - Alguns direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- JavaScript -->
+    <script src="assets/js/libs/jquery-1.11.2.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/popper.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- JavaScript -->
+
+</body>
+
+</html>

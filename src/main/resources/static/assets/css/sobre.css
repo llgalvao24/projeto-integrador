@@ -11,7 +11,8 @@
 	font-size: 18px;
 	line-height: 25px;
 	margin-bottom: 1em;
-	padding-right: 60px
+	padding-right: 60px;
+	color: #005073;
 }
 
 .missao_sobre ul li {
@@ -22,4 +23,7 @@
 
 .foto-equipe {
 	padding-top: 20px;
+}
+.qualidade-lista li p{
+	color: #005073;
 }
