@@ -27,11 +27,12 @@ public class User implements Serializable {
     private String cpf;
 
     @JsonFormat(pattern="dd/MM/yyyy")
-    private LocalDate birthDate;
+    private Date birthDate;
 
     private String phone;
     private String imageUrl;
     private Long frequency;
+
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private LoginUser loginUser;
@@ -60,8 +61,8 @@ public class User implements Serializable {
         addProfile(Profile.USER);
     }
 
-    public User( String firstName, String lastName, String email, String cpf, LocalDate birthDate, String phone,
-                String imageUrl, Long frequency, Address address) {
+    public User(String firstName, String lastName, String email, String cpf, Date birthDate,
+                String phone, String imageUrl, Long frequency) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -70,8 +71,6 @@ public class User implements Serializable {
         this.phone = phone;
         this.imageUrl = imageUrl;
         this.frequency = frequency;
-        this.address = address;
-        addProfile(Profile.USER);
     }
 
     public Set<Profile> getProfiles() {

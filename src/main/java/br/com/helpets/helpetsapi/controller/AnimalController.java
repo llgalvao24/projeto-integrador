@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/animals")
 public class AnimalController {
 
     @Autowired
@@ -24,23 +24,23 @@ public class AnimalController {
     @Autowired
     AnimalService animalService;
 
-    @GetMapping("/animals")
+    @GetMapping("")
     public List<Animal> getAllAnimals() {
         return animalRepository.findAll();
     }
 
-    @GetMapping("/animals/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Animal> getAnimalById(@PathVariable(value = "id") Long animalId){
         Animal obj = animalService.findAnimal(animalId);
         return ResponseEntity.ok().body(obj);
     }
 
-    @PostMapping("/animals")
+    @PostMapping("")
     public Animal createAnimal(@Valid @RequestBody Animal animal) {
         return animalRepository.save(animal);
     }
 
-    @PutMapping("/animals/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Animal> updateAnimal(@PathVariable(value = "id") Long animalId,
                                            @Valid @RequestBody Animal animalDetails) throws ResourceNotFoundException {
         Animal animal = animalRepository.findById(animalId)
@@ -59,7 +59,7 @@ public class AnimalController {
         return ResponseEntity.ok(updatedAnimal);
     }
 
-    @DeleteMapping("/animals/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> deleteAnimal(@PathVariable(value = "id") Long animalId)
             throws ResourceNotFoundException {
         Animal animal = animalRepository.findById(animalId)

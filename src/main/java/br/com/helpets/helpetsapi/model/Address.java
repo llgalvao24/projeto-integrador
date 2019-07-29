@@ -2,18 +2,21 @@ package br.com.helpets.helpetsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Data
+@NoArgsConstructor
+@Getter @Setter
 public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String streetName;
@@ -25,8 +28,19 @@ public class Address implements Serializable {
     private String state;
 
     @JsonIgnore
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @MapsId
     private User user;
+
+    public Address(String streetName, String streetNumber, String reference, String neighbourhood, String zipCode, String city, String state, User user) {
+        this.streetName = streetName;
+        this.streetNumber = streetNumber;
+        this.reference = reference;
+        this.neighbourhood = neighbourhood;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.state = state;
+        this.user = user;
+    }
 }

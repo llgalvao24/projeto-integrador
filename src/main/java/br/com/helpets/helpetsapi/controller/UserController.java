@@ -50,7 +50,6 @@ public class UserController {
         user.setCpf(userDetails.getCpf());
         user.setLastName(userDetails.getLastName());
         user.setFirstName(userDetails.getFirstName());
-        user.setAddress(userDetails.getAddress());
         user.setBirthDate(userDetails.getBirthDate());
         user.setImageUrl(userDetails.getImageUrl());
 

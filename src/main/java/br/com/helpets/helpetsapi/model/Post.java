@@ -1,6 +1,7 @@
 package br.com.helpets.helpetsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -32,7 +33,7 @@ public class Post implements Serializable {
     private Date postData;
 
     @ManyToOne
-    @JsonIgnoreProperties("posts")
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
 

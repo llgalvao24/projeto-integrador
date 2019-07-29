@@ -32,7 +32,6 @@ public class Animal implements Serializable {
 
     @ManyToOne
     @JsonIgnore
-//    @JsonIgnoreProperties("animals")
     @JoinColumn(name = "user_id")
     private User user;
 
