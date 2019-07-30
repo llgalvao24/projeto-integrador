@@ -26,13 +26,13 @@ public class Comment implements Serializable {
     @JsonFormat(pattern="dd/MM/yyyy HH:mm")
     private Date commData;
 
-    @ManyToOne
     @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
     @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
 

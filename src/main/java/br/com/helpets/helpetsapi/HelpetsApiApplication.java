@@ -62,8 +62,13 @@ public class HelpetsApiApplication implements CommandLineRunner {
 		loginUserRepository.saveAll(Arrays.asList(lu1,lu2));
 
 		Post post1 = new Post("post1", "imageUrl1", "content 1", sdf1.parse("24/08/2019 22:01"), user1);
-		Post post2 = new Post("post2", "imageUrl2", "content 2", sdf1.parse("24/08/2019 22:02"), user2);
-		postRepository.saveAll(Arrays.asList(post1,post2));
+		Post post2 = new Post("post2", "imageUrl3", "content 2", sdf1.parse("24/08/2019 22:04"), user2);
+		Post post3 = new Post("post3", "imageUrl4", "content 4", sdf1.parse("24/08/2019 22:05"), user2);
+		Post post4 = new Post("post4", "imageUrl5", "content 5", sdf1.parse("24/08/2019 22:06"), user2);
+		Post post5 = new Post("post5", "imageUrl6", "content 6", sdf1.parse("24/08/2019 22:07"), user2);
+		Post post6 = new Post("post6", "imageUrl7", "content 7", sdf1.parse("24/08/2019 22:09"), user2);
+		Post post7 = new Post("post7", "imageUrl8", "content 7", sdf1.parse("24/08/2019 22:08"), user2);
+		postRepository.saveAll(Arrays.asList(post1,post2, post3, post4, post5, post6, post7));
 
 		Comment comment1 = new Comment("comment 1", sdf1.parse("30/09/2019 22:22"), user1, post1 );
 		Comment comment2 = new Comment("comment 2", sdf1.parse("30/09/2019 22:21"), user2, post1 );

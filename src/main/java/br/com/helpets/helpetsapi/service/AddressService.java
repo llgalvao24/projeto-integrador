@@ -1,6 +1,6 @@
 package br.com.helpets.helpetsapi.service;
 
-import br.com.helpets.helpetsapi.exception.ResourceNotFoundException;
+import br.com.helpets.helpetsapi.service.exception.ObjectNotFoundException;
 import br.com.helpets.helpetsapi.model.Address;
 import br.com.helpets.helpetsapi.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class AddressService {
 
     public Address find(Long id){
         Optional<Address> obj = repo.findById(id);
-        return obj.orElseThrow(() -> new ResourceNotFoundException(
+        return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Object not found for this id: " + id + ", Type: " + Address.class.getName() ));
     }
 }

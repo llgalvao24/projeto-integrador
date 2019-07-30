@@ -1,8 +1,7 @@
 package br.com.helpets.helpetsapi.service;
 
-import br.com.helpets.helpetsapi.exception.ResourceNotFoundException;
+import br.com.helpets.helpetsapi.service.exception.ObjectNotFoundException;
 import br.com.helpets.helpetsapi.model.Animal;
-import br.com.helpets.helpetsapi.model.Post;
 import br.com.helpets.helpetsapi.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ public class AnimalService {
 
     public Animal find(Long id){
         Optional<Animal> obj = repo.findById(id);
-        return obj.orElseThrow(() -> new ResourceNotFoundException(
+        return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Object not found for this id: " + id + ", Type: " + Animal.class.getName() ));
     }
 

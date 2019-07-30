@@ -1,31 +1,31 @@
 package br.com.helpets.helpetsapi.service;
 
 import br.com.helpets.helpetsapi.service.exception.ObjectNotFoundException;
-import br.com.helpets.helpetsapi.model.Comment;
-import br.com.helpets.helpetsapi.repository.CommentRepository;
+import br.com.helpets.helpetsapi.model.Donation;
+import br.com.helpets.helpetsapi.repository.DonationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class CommentService {
+public class DonationService {
 
     @Autowired
-    CommentRepository repo;
+    DonationRepository repo;
 
-    public Comment find(Long id){
-        Optional<Comment> obj = repo.findById(id);
+    public Donation find(Long id){
+        Optional<Donation> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
-                "Object not found for this id: " + id + ", Type: " + Comment.class.getName() ));
+                "Object not found for this id: " + id + ", Type: " + Donation.class.getName() ));
     }
 
-    public Comment insert(Comment obj) {
+    public Donation insert(Donation obj) {
         obj.setId(null);
         return repo.save(obj);
     }
 
-    public Comment update(Comment obj) {
+    public Donation update(Donation obj) {
         find(obj.getId()); //verify if obj exists
         return repo.save(obj);
     }

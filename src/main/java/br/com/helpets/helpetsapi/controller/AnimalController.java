@@ -31,4 +31,10 @@ public class AnimalController {
                 .path("/{id}").buildAndExpand(obj.getId()).toUri(); //return uri (id) created obj
         return ResponseEntity.created(uri).build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

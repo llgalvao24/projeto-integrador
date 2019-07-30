@@ -5,7 +5,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,7 +37,7 @@ public class Animal implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "animal")
-    private Set<Donation> donations = new HashSet<>();
+    private List<Donation> donations = new ArrayList<>();
 
     public Animal(String type, String animalName, Integer age, String breed,
                   String size, String mainColor, Double weight, Boolean vaccine, User user) {

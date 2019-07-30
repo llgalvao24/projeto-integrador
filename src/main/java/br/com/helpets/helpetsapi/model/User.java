@@ -51,14 +51,15 @@ public class User implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private Set<Comment> comments = new HashSet<>();
+    private List<Comment> comments = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Animal> animals = new HashSet<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private Set<Donation> donations = new HashSet<>();
+    private List<Donation> donations = new ArrayList<>();
 
     public User(){
         addProfile(Profile.USER);

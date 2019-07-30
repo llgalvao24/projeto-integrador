@@ -6,10 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
@@ -33,7 +30,7 @@ public class Post implements Serializable {
     private User user;
 
     @OneToMany(mappedBy = "post")
-    private Set<Comment> comments = new HashSet<>();
+    private List<Comment> comments = new ArrayList<>();
 
     public Post(String title, String postImage, String content, Date postData, User user) {
         this.title = title;

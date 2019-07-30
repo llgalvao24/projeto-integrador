@@ -1,68 +1,52 @@
 package br.com.helpets.helpetsapi.controller;
 
-import br.com.helpets.helpetsapi.exception.ResourceNotFoundException;
 import br.com.helpets.helpetsapi.model.Donation;
-import br.com.helpets.helpetsapi.repository.DonationRepository;
+import br.com.helpets.helpetsapi.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.net.URI;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/donations")
 public class DonationController {
 
-    @Autowired//Força a injeção de dependencia
-    private DonationRepository donationRepository;
+    @Autowired
+    private DonationService service;
 
-    @GetMapping("/donations")
-    public List<Donation> getAllDonations() {
-        return donationRepository.findAll();
+    //gets an obj by id
+    @GetMapping("/{id}")
+    public ResponseEntity<Donation> find(@PathVariable Long id) {
+        Donation obj = service.find(id);
+        return ResponseEntity.ok().body(obj);
     }
 
-    @GetMapping("/donations/{id}")
-    public ResponseEntity<Donation> getDonationById(@PathVariable(value = "id") Long donationId)
-            throws ResourceNotFoundException {
-        Donation donation = donationRepository.findById(donationId)
-                .orElseThrow(() -> new ResourceNotFoundException("donation not found for this id: " + donationId));
-        return ResponseEntity.ok().body(donation);
+    //creates a new obj
+    @PostMapping("")
+    public ResponseEntity<Void> insert (@RequestBody Donation obj){
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
+                .path("/{id}").buildAndExpand(obj.getId()).toUri(); //return uri (id) created obj
+        return ResponseEntity.created(uri).build();
     }
 
-    @PostMapping("/donations")
-    public Donation createDonation(@Valid @RequestBody Donation donation) {
-        return donationRepository.save(donation);
+    //updates an obj by id
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@RequestBody Donation obj, @PathVariable Long id){
+        obj.setId(id);
+        obj = service.update(obj);
+        return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/donations/{id}")
-    public ResponseEntity<Donation> updateDonation(@PathVariable(value = "id") Long donationId,
-                                               @Valid @RequestBody Donation donationDetails) throws ResourceNotFoundException {
-        Donation donation = donationRepository.findById(donationId)
-                .orElseThrow(() -> new ResourceNotFoundException("donation not found for this id: " + donationId));
-
-        donation.setAccessory(donationDetails.getAccessory());
-        donation.setFood(donationDetails.getFood());
-        donation.setGroom(donationDetails.getGroom());
-        donation.setMedication(donationDetails.getMedication());
-
-        final Donation updatedDonation = donationRepository.save(donation);
-        return ResponseEntity.ok(updatedDonation);
+    //deletes an object by id
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/donations/{id}")
-    public Map<String, Boolean> deleteDonation(@PathVariable(value = "id") Long donationId)
-            throws ResourceNotFoundException {
-        Donation donation = donationRepository.findById(donationId)
-                .orElseThrow(() -> new ResourceNotFoundException("donation not found for this id: " + donationId));
-
-        donationRepository.delete(donation);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
-    }
 }
 
 
