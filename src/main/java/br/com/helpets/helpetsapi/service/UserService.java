@@ -1,8 +1,6 @@
 package br.com.helpets.helpetsapi.service;
 
-import br.com.helpets.helpetsapi.controller.UserController;
 import br.com.helpets.helpetsapi.exception.ResourceNotFoundException;
-import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +12,16 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    UserRepository repo;
 
-    public User findUser(Long id){
-        Optional<User> obj = userRepository.findById(id);
+    public User find(Long id){
+        Optional<User> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(
-                "User not found for this id: " + id));
+                "Object not found for this id: " + id + ", Type: " + User.class.getName() ));
+    }
+
+    public void delete(Long id){
+        find(id);
+        repo.deleteById(id);
     }
 }

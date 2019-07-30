@@ -8,8 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -30,6 +28,12 @@ public class HelpetsApiApplication implements CommandLineRunner {
 	@Autowired
 	private LoginUserRepository loginUserRepository;
 
+	@Autowired
+	private AnimalRepository animalRepository;
+
+	@Autowired
+	private DonationRepository donationRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(HelpetsApiApplication.class, args);
 	}
@@ -39,11 +43,9 @@ public class HelpetsApiApplication implements CommandLineRunner {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-		Long freq1 = (long) 1;
-
-		User user1 = new User("Luiz", "Galvao", "llgalvao24@gmail.com", "08239841414", sdf.parse("24/08/1990"), "19981181356", "profpic1", freq1);
-		User user2 = new User("Ercilia", "Silva", "ercilia@gmail.com", "08239841414", sdf.parse("09/07/1992"), "19981181369", "profpic2", freq1);
+		
+		User user1 = new User("Luiz", "Galvao", "llgalvao24@gmail.com", "08239841414", sdf.parse("24/08/1990"), "19981181356", "profpic1", 1L);
+		User user2 = new User("Ercilia", "Silva", "ercilia@gmail.com", "08239841414", sdf.parse("09/07/1992"), "19981181369", "profpic2", 2L);
 
 		LoginUser lu1 = new LoginUser("llgalvao", "senha123", user1);
 		user1.setLoginUser(lu1);
@@ -55,7 +57,7 @@ public class HelpetsApiApplication implements CommandLineRunner {
 		Address ad2 = new Address("Jean Nassif Mokarzel", "49", "no", "Jd Sta Genebra", "13084-757", "Campinas", "SP", user2);
 		user2.setAddress(ad2);
 
-		userRepository.saveAll(Arrays.asList(user1,user2));
+		userRepository.saveAll(Arrays.asList(user1, user2));
 		addressRepository.saveAll(Arrays.asList(ad1,ad2));
 		loginUserRepository.saveAll(Arrays.asList(lu1,lu2));
 
@@ -69,5 +71,18 @@ public class HelpetsApiApplication implements CommandLineRunner {
 		Comment comment4 = new Comment("comment 4", sdf1.parse("30/09/2019 22:25"), user2, post2 );
 		Comment comment5 = new Comment("comment 5", sdf1.parse("30/09/2019 22:26"), user1, post1 );
 		commentRepository.saveAll(Arrays.asList(comment1, comment2, comment3, comment4, comment5));
+
+		Animal an1 = new Animal("cat", "Frida", 1, "frajola", "-", "black", 2.0, true, user1);
+		Animal an2 = new Animal("dog", "Apolo", 2, "pug", "small", "black", 3.0, true, user2);
+		Animal an3 = new Animal("dog", "Bob", 5, "pug", "small", "white", 2.0, true, user2);
+		Animal an4 = new Animal("rabbit", "floquinho", 1, "white", "small", "white", 2.0, true, user1);
+		animalRepository.saveAll(Arrays.asList(an1, an2, an3, an4));
+
+		Donation d1 = new Donation(3L, 3L, 45L, 3L, user1, an4);
+		Donation d2 = new Donation(4L, 3L, 3L, 5L, user2, an1);
+		Donation d3 = new Donation(6L, 3L, 40L, 3L, user2, an2);
+		Donation d4 = new Donation(1L, 3L, 3L, 10L, user1, an3);
+		Donation d5 = new Donation(1L, 3L, 50L, 3L, user1, an1);
+		donationRepository.saveAll(Arrays.asList(d1, d2, d3, d4, d5));
 	}
 }

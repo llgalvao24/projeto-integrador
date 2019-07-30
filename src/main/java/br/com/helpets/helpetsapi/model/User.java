@@ -2,6 +2,7 @@ package br.com.helpets.helpetsapi.model;
 
 import br.com.helpets.helpetsapi.model.enums.Profile;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,7 +34,6 @@ public class User implements Serializable {
     private String imageUrl;
     private Long frequency;
 
-
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private LoginUser loginUser;
 
@@ -45,16 +45,19 @@ public class User implements Serializable {
     private Set<Integer> profiles = new HashSet<>();
 
     // Lembrar de colocar um IF no front para o acesso do admin
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Post> posts = new HashSet<>();
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
     private Set<Comment> comments = new HashSet<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private Set<Animal> animals = new HashSet<>();
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
     private Set<Donation> donations = new HashSet<>();
 
     public User(){
@@ -74,7 +77,7 @@ public class User implements Serializable {
     }
 
     public Set<Profile> getProfiles() {
-        return profiles.stream().map(x -> Profile.toEnum(x)).collect(Collectors.toSet());
+        return profiles.stream().map(Profile::toEnum).collect(Collectors.toSet());
     }
 
     public void addProfile(Profile profile) {
@@ -82,35 +85,4 @@ public class User implements Serializable {
     }
 
 
-    public void addPost(Post post){
-        posts.add(post);
-    }
-
-    public void deletePost(Post post){
-        posts.remove(post);
-    }
-
-    public void addComment(Comment comment){
-        comments.add(comment);
-    }
-
-    public void deleteComment(Optional<Comment> comment){
-        comments.remove(comment);
-    }
-
-    public void addAnimal(Animal animal){
-        animals.add(animal);
-    }
-
-    public void deleteAnimal(Optional<Animal> animal){
-        animals.remove(animal);
-    }
-
-    public void addDonation(Donation donation){
-        donations.add(donation);
-    }
-
-    public void deleteDonation(Optional<Donation> donation){
-        donations.remove(donations);
-    }
 }

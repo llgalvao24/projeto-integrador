@@ -1,66 +1,47 @@
 package br.com.helpets.helpetsapi.controller;
 
-import br.com.helpets.helpetsapi.exception.ResourceNotFoundException;
 import br.com.helpets.helpetsapi.model.Post;
-import br.com.helpets.helpetsapi.repository.PostRepository;
+import br.com.helpets.helpetsapi.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.net.URI;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/posts")
 public class PostController {
 
     @Autowired
-    private PostRepository postRepository;
+    private PostService service;
 
-    @GetMapping("/posts")
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
+    @GetMapping("/{id}")
+    public ResponseEntity<Post> find(@PathVariable(value = "id") Long id) {
+        Post obj = service.find(id);
+        return ResponseEntity.ok().body(obj);
     }
 
-    @GetMapping("/posts/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable(value = "id") Long postId)
-            throws ResourceNotFoundException {
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new ResourceNotFoundException("post not found for this id: " + postId));
-        return ResponseEntity.ok().body(post);
+    //creates a new obj
+    @PostMapping("")
+    public ResponseEntity<Void> insert(@RequestBody Post obj){
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
+                .path("/{id}").buildAndExpand(obj.getId()).toUri(); //return uri (id) created obj
+        return ResponseEntity.created(uri).build();
     }
 
-    @PostMapping("/posts")
-    public Post createPost(@Valid @RequestBody Post post) {
-        return postRepository.save(post);
+    //updates an obj by id
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@RequestBody Post obj, @PathVariable Long id){
+        obj.setId(id);
+        obj = service.update(obj);
+        return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/posts/{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable(value = "id") Long postId,
-                                                   @Valid @RequestBody Post postDetails) throws ResourceNotFoundException {
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new ResourceNotFoundException("post not found for this id: " + postId));
-
-        post.setContent(postDetails.getContent());
-        post.setPostData(postDetails.getPostData());
-        post.setPostImage(postDetails.getPostImage());
-        post.setTitle(postDetails.getTitle());
-
-        final Post updatedpost = postRepository.save(post);
-        return ResponseEntity.ok(updatedpost);
-    }
-
-    @DeleteMapping("/posts/{id}")
-    public Map<String, Boolean> deletePost(@PathVariable(value = "id") Long postId)
-            throws ResourceNotFoundException {
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new ResourceNotFoundException("post not found for this id: " + postId));
-
-        postRepository.delete(post);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

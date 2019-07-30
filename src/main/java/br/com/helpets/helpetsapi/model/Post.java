@@ -2,19 +2,14 @@ package br.com.helpets.helpetsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
@@ -32,12 +27,12 @@ public class Post implements Serializable {
     @JsonFormat(pattern="dd/MM/yyyy HH:mm")
     private Date postData;
 
-    @ManyToOne
     @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "post")
     private Set<Comment> comments = new HashSet<>();
 
     public Post(String title, String postImage, String content, Date postData, User user) {

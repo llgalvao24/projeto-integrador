@@ -1,10 +1,7 @@
 package br.com.helpets.helpetsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +9,7 @@ import java.io.Serializable;
 @Entity
 @NoArgsConstructor
 @Getter @Setter
+@EqualsAndHashCode
 public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -2,14 +2,9 @@ package br.com.helpets.helpetsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -34,13 +29,11 @@ public class Comment implements Serializable {
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "user_id")
-    @Getter(AccessLevel.NONE)
     private User user;
 
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "post_id")
-    @Getter(AccessLevel.NONE)
     private Post post;
 
     public Comment(String content, Date commData, User user, Post post) {

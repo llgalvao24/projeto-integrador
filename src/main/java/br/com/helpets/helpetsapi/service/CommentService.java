@@ -12,11 +12,28 @@ import java.util.Optional;
 public class CommentService {
 
     @Autowired
-    private CommentRepository commentRepository;
+    CommentRepository repo;
 
-    public Comment findComment(Long id) {
-        Optional<Comment> obj = commentRepository.findById(id);
+    public Comment find(Long id){
+        Optional<Comment> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(
-                "Comment not found for this id: " + id));
+                "Object not found for this id: " + id + ", Type: " + Comment.class.getName() ));
     }
+
+    public Comment insert(Comment obj) {
+        obj.setId(null);
+        return repo.save(obj);
+    }
+
+    public Comment update(Comment obj) {
+        find(obj.getId()); //verify if obj exists
+        return repo.save(obj);
+    }
+
+    public void delete(Long id){
+        find(id);
+        repo.deleteById(id);
+    }
+
+
 }

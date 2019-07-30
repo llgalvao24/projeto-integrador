@@ -1,73 +1,34 @@
 package br.com.helpets.helpetsapi.controller;
 
-import br.com.helpets.helpetsapi.exception.ResourceNotFoundException;
 import br.com.helpets.helpetsapi.model.Animal;
-import br.com.helpets.helpetsapi.model.Comment;
-import br.com.helpets.helpetsapi.repository.AnimalRepository;
+import br.com.helpets.helpetsapi.model.Post;
 import br.com.helpets.helpetsapi.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/v1/animals")
 public class AnimalController {
 
     @Autowired
-    private AnimalRepository animalRepository;
-
-    @Autowired
-    AnimalService animalService;
-
-    @GetMapping("")
-    public List<Animal> getAllAnimals() {
-        return animalRepository.findAll();
-    }
+    private AnimalService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Animal> getAnimalById(@PathVariable(value = "id") Long animalId){
-        Animal obj = animalService.findAnimal(animalId);
+    public ResponseEntity<Animal> find(@PathVariable(value = "id") Long id) {
+        Animal obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
 
+    //creates a new obj
     @PostMapping("")
-    public Animal createAnimal(@Valid @RequestBody Animal animal) {
-        return animalRepository.save(animal);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Animal> updateAnimal(@PathVariable(value = "id") Long animalId,
-                                           @Valid @RequestBody Animal animalDetails) throws ResourceNotFoundException {
-        Animal animal = animalRepository.findById(animalId)
-                .orElseThrow(() -> new ResourceNotFoundException("animal not found for this id: " + animalId));
-
-        animal.setAge(animalDetails.getAge());
-        animal.setAnimalName(animalDetails.getAnimalName());
-        animal.setBreed(animalDetails.getBreed());
-        animal.setMainColor(animalDetails.getMainColor());
-        animal.setSize(animalDetails.getSize());
-        animal.setType(animalDetails.getType());
-        animal.setVaccine(animalDetails.getVaccine());
-        animal.setWeight(animalDetails.getWeight());
-
-        final Animal updatedAnimal = animalRepository.save(animal);
-        return ResponseEntity.ok(updatedAnimal);
-    }
-
-    @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteAnimal(@PathVariable(value = "id") Long animalId)
-            throws ResourceNotFoundException {
-        Animal animal = animalRepository.findById(animalId)
-                .orElseThrow(() -> new ResourceNotFoundException("animal not found for this id: " + animalId));
-
-        animalRepository.delete(animal);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+    public ResponseEntity<Void> insert(@RequestBody Animal obj){
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
+                .path("/{id}").buildAndExpand(obj.getId()).toUri(); //return uri (id) created obj
+        return ResponseEntity.created(uri).build();
     }
 }

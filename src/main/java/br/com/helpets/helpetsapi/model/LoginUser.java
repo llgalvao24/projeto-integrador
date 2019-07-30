@@ -1,18 +1,15 @@
 package br.com.helpets.helpetsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 public class LoginUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
