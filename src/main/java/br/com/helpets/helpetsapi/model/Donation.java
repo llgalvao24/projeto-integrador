@@ -34,7 +34,8 @@ public class Donation implements Serializable {
     @JoinColumn(name = "animal_id")
     private Animal animal;
 
-    public Donation(Long food, Long groom, Long medication, Long accessory, User user, Animal animal) {
+    public Donation(Long id, Long food, Long groom, Long medication, Long accessory, User user, Animal animal) {
+        this.id = id;
         this.food = food;
         this.groom = groom;
         this.medication = medication;

@@ -45,7 +45,7 @@ public class User implements Serializable {
     private Set<Integer> profiles = new HashSet<>();
 
     // Lembrar de colocar um IF no front para o acesso do admin
-    @JsonIgnore
+
     @OneToMany(mappedBy = "user")
     private Set<Post> posts = new HashSet<>();
 
@@ -65,8 +65,9 @@ public class User implements Serializable {
         addProfile(Profile.USER);
     }
 
-    public User(String firstName, String lastName, String email, String cpf, Date birthDate,
-                String phone, String imageUrl, Long frequency) {
+    public User(Long id, String firstName, String lastName, String email, String cpf,
+                Date birthDate, String phone, String imageUrl, Long frequency) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -75,7 +76,11 @@ public class User implements Serializable {
         this.phone = phone;
         this.imageUrl = imageUrl;
         this.frequency = frequency;
+//        this.loginUser = loginUser;
+//        this.address = address;
     }
+
+
 
     public Set<Profile> getProfiles() {
         return profiles.stream().map(Profile::toEnum).collect(Collectors.toSet());

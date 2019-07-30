@@ -32,7 +32,8 @@ public class Post implements Serializable {
     @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
 
-    public Post(String title, String postImage, String content, Date postData, User user) {
+    public Post(Long id, String title, String postImage, String content, Date postData, User user) {
+        this.id = id;
         this.title = title;
         this.postImage = postImage;
         this.content = content;

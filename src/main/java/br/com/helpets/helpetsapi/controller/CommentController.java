@@ -4,6 +4,7 @@ import br.com.helpets.helpetsapi.dto.CommentDTO;
 import br.com.helpets.helpetsapi.dto.PostDTO;
 import br.com.helpets.helpetsapi.model.Comment;
 import br.com.helpets.helpetsapi.model.Post;
+import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,9 +41,10 @@ public class CommentController {
 
     //updates an obj by id
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@RequestBody Comment obj, @PathVariable Long id){
+    public ResponseEntity<Void> update(@RequestBody CommentDTO objDto, @PathVariable Long id){
+        Comment obj = service.fromDTO(objDto);
         obj.setId(id);
-        obj = service.update(obj);
+        service.update(obj);
         return ResponseEntity.noContent().build();
     }
 

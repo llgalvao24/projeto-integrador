@@ -1,6 +1,7 @@
 package br.com.helpets.helpetsapi.controller;
 
 import br.com.helpets.helpetsapi.dto.PostDTO;
+import br.com.helpets.helpetsapi.model.Comment;
 import br.com.helpets.helpetsapi.model.Post;
 import br.com.helpets.helpetsapi.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,8 @@ public class PostController {
 
     //updates an obj by id
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@RequestBody Post obj, @PathVariable Long id){
+    public ResponseEntity<Void> update(@RequestBody PostDTO objDto, @PathVariable Long id){
+        Post obj = service.fromDTO(objDto);
         obj.setId(id);
         service.update(obj);
         return ResponseEntity.noContent().build();

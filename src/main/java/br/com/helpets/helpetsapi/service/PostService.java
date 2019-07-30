@@ -1,6 +1,9 @@
 package br.com.helpets.helpetsapi.service;
 
 import br.com.helpets.helpetsapi.dto.PostDTO;
+import br.com.helpets.helpetsapi.dto.PostDTO;
+import br.com.helpets.helpetsapi.model.Comment;
+import br.com.helpets.helpetsapi.model.Post;
 import br.com.helpets.helpetsapi.model.Post;
 import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.repository.PostRepository;
@@ -23,6 +26,7 @@ public class PostService {
     @Autowired
     PostRepository repo;
 
+    //verify if obj exists and gets it from db
     public Post find(Long id){
         Optional<Post> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -35,8 +39,9 @@ public class PostService {
     }
 
     public Post update(Post obj) {
-        find(obj.getId()); //verify if obj exists
-        return repo.save(obj);
+        Post newObj = find(obj.getId()); //verify if obj exists and gets it from db
+        updateData(newObj, obj); //updates only allowed fields
+        return repo.save(newObj);
     }
 
 //    public void delete(Long id){
@@ -50,7 +55,7 @@ public class PostService {
             repo.deleteById(id);
         }
         catch (DataIntegrityViolationException e){
-            throw new DataIntegrityException("Not possible to exclude a post with comments");
+            throw new DataIntegrityException("Not possible to exclude a post with Posts");
         }
     }
 
@@ -63,7 +68,14 @@ public class PostService {
         return repo.findAll(pageRequest);
     }
 
-//    public Post fromDTO(PostDTO objDto){
-//        return new Post(objDto.getTitle(), objDto.getPostImage(), objDto.getContent(), objDto.getPostData());
-//    }
+    public Post fromDTO(PostDTO objDto){
+        return new Post(objDto.getId(), objDto.getTitle(), objDto.getPostImage(), objDto.getContent(), objDto.getPostData(), null);
+    }
+
+    //logic of allowed fields
+    private void updateData(Post newObj, Post obj) {
+        newObj.setTitle(obj.getTitle());
+        newObj.setPostImage(obj.getPostImage());
+        newObj.setContent(obj.getContent());
+    }
 }

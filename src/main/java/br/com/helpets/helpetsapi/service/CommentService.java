@@ -2,6 +2,7 @@ package br.com.helpets.helpetsapi.service;
 
 import br.com.helpets.helpetsapi.dto.CommentDTO;
 import br.com.helpets.helpetsapi.model.Post;
+import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.service.exception.ObjectNotFoundException;
 import br.com.helpets.helpetsapi.model.Comment;
 import br.com.helpets.helpetsapi.repository.CommentRepository;
@@ -32,8 +33,9 @@ public class CommentService {
     }
 
     public Comment update(Comment obj) {
-        find(obj.getId()); //verify if obj exists
-        return repo.save(obj);
+        Comment newObj = find(obj.getId()); //verify if obj exists
+        updateData(newObj, obj);
+        return repo.save(newObj);
     }
 
     public void delete(Long id){
@@ -50,7 +52,12 @@ public class CommentService {
         return repo.findAll(pageRequest);
     }
 
-//    public Comment fromDTO(CommentDTO objDto){
-//        return new Comment(objDto.getContent(), objDto.getCommData());
-//    }
+    //get
+    public Comment fromDTO(CommentDTO objDto){
+        return new Comment(objDto.getId(), objDto.getContent(), null, null, null);
+    }
+
+    private void updateData(Comment newObj, Comment obj) {
+        newObj.setContent(obj.getContent());
+    }
 }

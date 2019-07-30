@@ -36,7 +36,8 @@ public class Comment implements Serializable {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    public Comment(String content, Date commData, User user, Post post) {
+    public Comment(Long id, String content, Date commData, User user, Post post) {
+        this.id = id;
         this.content = content;
         this.commData = commData;
         this.user = user;

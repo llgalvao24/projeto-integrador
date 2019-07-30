@@ -39,8 +39,9 @@ public class Animal implements Serializable {
     @OneToMany(mappedBy = "animal")
     private List<Donation> donations = new ArrayList<>();
 
-    public Animal(String type, String animalName, Integer age, String breed,
+    public Animal(Long id, String type, String animalName, Integer age, String breed,
                   String size, String mainColor, Double weight, Boolean vaccine, User user) {
+        this.id = id;
         this.type = type;
         this.animalName = animalName;
         this.age = age;
