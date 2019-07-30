@@ -12,9 +12,10 @@
 }
 
 .container {
-	width: 960px;
+	/* width: 100% !important; */
+	max-width: 960px !important;
 	margin: 0 auto;
-	padding: 0px;
+	padding: 0px !important;
 	position: relative;
 }
 
@@ -58,6 +59,7 @@
 .container {
 	width: 768px;
 }
+
 
 .grid-1		{width: 28px;}
 .grid-2		{width: 76px;}

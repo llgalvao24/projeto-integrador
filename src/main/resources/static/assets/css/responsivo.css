@@ -13,7 +13,7 @@
 /*Footer*/
 
 .footer_redes ul li a {
-	border: 3px solid #fec63e;
+	border: 3px solid #fff;
 	display: block;
 	padding: 6px;
 
@@ -24,25 +24,25 @@
 	height: 26px;
 }
 
-/*Produtos*/
+/*animaiss*/
 
-.produto_item h2{
+.animais_item h2{
 	top: -150px;
 	margin-bottom: -56px;
 }
 
-.produto_icone {
-	padding: 41px 0;
+.animais_icone {
+	padding: 15px 15px;
 }
 
-.produto_info p{
+.animais_info p{
 	font-size: 14px;
 	line-height: 20px;
 	height: 122px;
 	padding: 20px 30px;
 }
 
-.produto_info ul li {
+.animais_info ul li {
 	width: 181px;
 	height: 49px;
 }
@@ -71,14 +71,12 @@
 }
 
 .header_menu ul li a {
-	border: 4px solid #000;
-	width: 136px;
 	display: block;
 	float: left;
 }
 
 .header_menu ul li a:hover {
-	border-color: #fff;
+	border-color: #bd7f42;
 }
 
 .header_menu ul li a.menu_ativo {
@@ -94,7 +92,7 @@
 .introducao {
 	margin-top: 0px;
 	padding-top: 40px;
-	background: url("../img/bg-mobile.jpg") no-repeat center;
+	background: url("../img/bg.jpg") no-repeat center;
 	background-size: cover;
 }
 
@@ -127,25 +125,26 @@
 	line-height: 25px;
 }
 
-/*Produtos*/
+/*animaiss*/
 
-.produto_item h2{
+.animais_item h2{
 	top: -100px;
 	margin-bottom: -68px;
 }
 
-.produto_icone {
-	padding: 41px 0;
+.animais_icone {
+	padding: 15px 15px;
+	
 }
 
-.produto_info p{
+.animais_info p{
 	font-size: 14px;
 	line-height: 20px;
 	height: auto;
 	padding: 20px 30px;
 }
 
-.produto_info ul li {
+.animais_info ul li {
 	width: 149px;
 	height: 49px;
 	font-size: 14px;
@@ -167,5 +166,21 @@
 	padding-right: 0px;
 	margin-bottom: 40px;
 }
+
+
+.btn {
+	border: 3px solid #005073;
+	padding: 10px 30px;
+	color: #005073;
+	font-size: 14px;
+	line-height: 20px;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: .1em;
+	transition: all .5s ease;
+	min-width: 200px;
+	
+}
+/* login */
 
 } /* Final do estilo para smartphone */

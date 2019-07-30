@@ -6,7 +6,7 @@
 @import 'responsivo.css';
 @import 'sobre.css';
 @import 'pets.css';
-@import 'login.css';
+/* @import 'login.css'; */
 @import 'util.css';
 
 
@@ -23,11 +23,14 @@ body {
 }
 
 p {
-	font-family: Georgia, "Times New Roman", serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	line-height: 20px;
 }
 
+a:hover {
+	text-decoration: none;
+}
 img {
 	
 	display: block;
@@ -80,11 +83,13 @@ img {
 	font-weight: bold;
 	letter-spacing: .1em;
 	transition: all .5s ease;
+	min-width: 200px;
+	margin-bottom: 30px;
 }
 
 .btn:hover {
-	color: #fff;
-	border-color: #fff;
+	color: #bd7f42;
+	border-color: #bd7f42;
 }
 
 .btn.btn-preto:hover {
@@ -100,7 +105,9 @@ img {
 	color: #005073;
 	text-transform: uppercase;
 	text-align: center;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
+	padding: 20px 0px 20px 0px;
+	
 }
 
 .subtitulo:after {
@@ -120,6 +127,7 @@ img {
 	color: #005073;
 	text-transform: uppercase;
 	margin-bottom: 20px;
+	padding-top: 20px;
 }
 
 .subtitulo-interno:after {
@@ -149,7 +157,9 @@ img {
 .header_menu ul li {
 	display: inline-block;
 	margin-left: 25px;
-	margin-top: 29px;
+	line-height: 75px;
+	height: 75px;
+	vertical-align: middle;
 }
 
 .header_menu ul li a {
@@ -171,6 +181,94 @@ img {
 	color: #005074;
 }
 
+
+.header .user {
+	min-width: 150px;
+	text-align: left;
+}
+
+.header .user table {
+	margin-top: 15px;
+}
+
+.header .user img {
+	margin-right: 12px;
+}
+
+.header .user .row {
+	line-height: 14px;
+}
+
+.header .user .btn {
+	background: none;
+	border: none;
+	padding: 0;
+	font-size: 14px;
+	font-style: italic;
+	color: #fff;
+	text-transform: none;
+	font-weight: normal;
+	margin-bottom: 0;
+	min-width: auto;
+}
+
+.header .user button:hover {
+	color: #005074;
+}
+
+/* Profile */
+
+.profile .profile-thumb {
+	padding-bottom: 20px;
+}
+
+.profile .profile-thumb img{
+	margin: 0 auto;
+}
+
+/* Pets */
+
+.meus-pets .pet .modal p,
+.animais.container .modal p {
+	color: #005073 !important;
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.meus-pets .pet .checkbox label,
+.meus-pets .pet .radio label,
+.animais.container .checkbox label, 
+.animais.container .radio label {
+	color: #005073;
+}
+
+.meus-pets .pet .btn-primary ,
+.animais.container .btn-primary  {
+	background-color: #005073;
+	color: #fff;
+
+}
+
+.meus-pets .pet .btn-primary:hover,
+.animais.container .btn-primary:hover{
+	background-color: #bd7f42;
+}
+
+.meus-pets .pet h5,
+.meus-pets .pet h4,
+.animais.container h5, 
+.animais.container h4{
+	color: #005073;
+}
+
+.meus-pets .pet .modal-footer .btn,
+.animais.container .modal-footer .btn{
+	margin-bottom: 0;
+	font-weight: normal;
+	font-size: 12px;
+	width: 49%;
+}
+
 /* Introdução */
 
 .introducao {
@@ -180,7 +278,7 @@ img {
 	background-size: cover;
 	margin-top: 80px;
 	text-align: center;
-	padding-top: 80px;
+	
 }
 
 .introducao h1 {
@@ -225,8 +323,9 @@ img {
 	height: 160px;
 	text-align: center;
 	color: #fff;
-	padding-top: 30px;
+	
 }
+
 
 .introducao-interna h1 {
 	font-size: 36px;
@@ -288,7 +387,7 @@ img {
 }
 
 .call {
-	padding-top: 40px;
+	padding-top: 20px;
 	text-align: center;
 	clear: both;
 }
@@ -335,7 +434,7 @@ img {
 	display: block;
 	background: url("../img/linhas.png") no-repeat center;
 	position: absolute;
-	top: 210px;
+	top: 170px;
 	right: 163px;
 	z-index: -1;
 }
@@ -347,6 +446,7 @@ img {
 .qualidade_lista {
 	padding-top: 20px;
 	overflow: auto; /* clear-fix */
+	margin-bottom: 20px;
 }
 
 .qualidade_lista li {
@@ -423,7 +523,7 @@ img {
 .footer_contato ul li {
 	font-size: 14px;
 	line-height: 20px;
-	font-family: Georgia, "Times New Roman", serif;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer_redes ul li {
