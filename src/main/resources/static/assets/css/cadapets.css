@@ -1,0 +1,47 @@
+.page-cadastro label
+ {
+    font-family: Arial, Helvetica, sans-serif;
+    color:#005073;
+}
+
+.page-cadastro h2{
+    font-size: 24px;
+line-height: 30px;
+font-weight: bold;
+letter-spacing: .1em;
+color: #005073;
+text-transform: uppercase;
+text-align: center;
+margin-bottom: 20px;
+padding: 20px 0px 20px 0px;
+    
+}
+
+.page-cadastro .text-center{
+    padding: 20px;
+}
+.page-cadastro .btn{
+    background-color: #005073;
+    font-size: 12px;
+
+
+}
+.page-cadastro .btn:hover {
+
+    background-color: #bd7f42;
+}
+.page-cadastro input{
+    border-radius: 0;
+    -webkit-box-shadow: none;
+box-shadow: none;
+
+}
+.page-cadastro input:focus{
+    -webkit-box-shadow: none ;
+box-shadow: none;
+border-color: #005073 !important;
+}
+.page-cadastro .form-control {
+    border-color: #005073;
+    font-size: 12px;
+}
