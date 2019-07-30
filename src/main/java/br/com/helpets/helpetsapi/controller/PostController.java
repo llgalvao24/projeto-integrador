@@ -27,14 +27,6 @@ public class PostController {
         return ResponseEntity.ok().body(obj);
     }
 
-    //gets all objs using a ObjDTO
-    @GetMapping("")
-    public ResponseEntity<List<PostDTO>> findAll() {
-        List<Post> list = service.findAll();
-        List<PostDTO> listDto = list.stream().map(PostDTO::new).collect(Collectors.toList());
-        return ResponseEntity.ok().body(listDto);
-    }
-
     //creates a new obj
     @PostMapping("")
     public ResponseEntity<Void> insert(@RequestBody Post obj){
@@ -56,6 +48,14 @@ public class PostController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    //gets all objs using a ObjDTO
+    @GetMapping("")
+    public ResponseEntity<List<PostDTO>> findAll() {
+        List<Post> list = service.findAll();
+        List<PostDTO> listDto = list.stream().map(PostDTO::new).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
     }
 
     //pagination with optional param in requisition - 24 -> 2, 3, 4, 6

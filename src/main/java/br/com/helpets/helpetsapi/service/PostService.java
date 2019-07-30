@@ -1,6 +1,8 @@
 package br.com.helpets.helpetsapi.service;
 
+import br.com.helpets.helpetsapi.dto.PostDTO;
 import br.com.helpets.helpetsapi.model.Post;
+import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.repository.PostRepository;
 import br.com.helpets.helpetsapi.service.exception.DataIntegrityException;
 import br.com.helpets.helpetsapi.service.exception.ObjectNotFoundException;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,4 +62,8 @@ public class PostService {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
     }
+
+//    public Post fromDTO(PostDTO objDto){
+//        return new Post(objDto.getTitle(), objDto.getPostImage(), objDto.getContent(), objDto.getPostData());
+//    }
 }

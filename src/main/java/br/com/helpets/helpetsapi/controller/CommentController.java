@@ -1,13 +1,19 @@
 package br.com.helpets.helpetsapi.controller;
 
+import br.com.helpets.helpetsapi.dto.CommentDTO;
+import br.com.helpets.helpetsapi.dto.PostDTO;
 import br.com.helpets.helpetsapi.model.Comment;
+import br.com.helpets.helpetsapi.model.Post;
 import br.com.helpets.helpetsapi.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1/comments")
@@ -45,5 +51,25 @@ public class CommentController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    //gets all objs using a ObjDTO
+    @GetMapping("")
+    public ResponseEntity<List<CommentDTO>> findAll() {
+        List<Comment> list = service.findAll();
+        List<CommentDTO> listDto = list.stream().map(CommentDTO::new).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
+    }
+
+    //pagination with optional param in requisition - 24 -> 2, 3, 4, 6
+    @GetMapping("/page")
+    public ResponseEntity<Page<CommentDTO>> findPage(
+            @RequestParam(value="page", defaultValue="0") Integer page,
+            @RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage,
+            @RequestParam(value="orderBy", defaultValue="commData") String orderBy, //class attribute
+            @RequestParam(value="direction", defaultValue="ASC") String direction) {
+        Page<Comment> list = service.findPage(page, linesPerPage, orderBy, direction);
+        Page<CommentDTO> listDto = list.map(CommentDTO::new);
+        return ResponseEntity.ok().body(listDto);
     }
 }
