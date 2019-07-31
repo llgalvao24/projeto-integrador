@@ -7,6 +7,7 @@ import br.com.helpets.helpetsapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -55,6 +56,7 @@ public class UserController {
     }
 
     //gets all objs using a ObjDTO
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping("")
     public ResponseEntity<List<UserDTO>> findAll() {
         List<User> list = service.findAll();

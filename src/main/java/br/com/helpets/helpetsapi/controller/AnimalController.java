@@ -8,6 +8,7 @@ import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -31,6 +32,7 @@ public class AnimalController {
     }
 
     //creates a new obj
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping("")
     public ResponseEntity<Void> insert (@RequestBody AnimalDTO objDto){
         Animal obj = service.fromDTO(objDto);
@@ -49,7 +51,7 @@ public class AnimalController {
         return ResponseEntity.noContent().build();
     }
 
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
