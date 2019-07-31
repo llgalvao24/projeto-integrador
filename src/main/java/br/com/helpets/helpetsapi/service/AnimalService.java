@@ -1,10 +1,14 @@
 package br.com.helpets.helpetsapi.service;
 
+import br.com.helpets.helpetsapi.dto.AnimalDTO;
+import br.com.helpets.helpetsapi.dto.UserDTO;
+import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.service.exception.ObjectNotFoundException;
 import br.com.helpets.helpetsapi.model.Animal;
 import br.com.helpets.helpetsapi.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +25,16 @@ public class AnimalService {
                 "Object not found for this id: " + id + ", Type: " + Animal.class.getName() ));
     }
 
+    @Transactional
     public Animal insert(Animal obj) {
         obj.setId(null);
         return repo.save(obj);
+    }
+
+    public Animal update(Animal obj) {
+        Animal newObj = find(obj.getId()); //verify if obj exists
+        updateData(newObj, obj);
+        return repo.save(newObj);
     }
 
     public void delete(Long id){
@@ -35,5 +46,25 @@ public class AnimalService {
         return repo.findAll();
     }
 
+    public List<Animal>findAllByUser(User user){
+        return repo.findAnimalsByUser(user);
+    }
+
+    public Animal fromDTO(AnimalDTO objDto) {
+        return new Animal(null, objDto.getType(), objDto.getAnimalName(), objDto.getAge(), objDto.getBreed(), objDto.getSize(),
+                objDto.getMainColor(), objDto.getWeight(), objDto.getVaccine(), null);
+    }
+
+    //sets what user/adm is allowed to update or not
+    private void updateData(Animal newObj, Animal obj) {
+        newObj.setType(obj.getType());
+        newObj.setAnimalName(obj.getAnimalName());
+        newObj.setAge(obj.getAge());
+        newObj.setBreed(obj.getBreed());
+        newObj.setSize(obj.getSize());
+        newObj.setMainColor(obj.getMainColor());
+        newObj.setWeight(obj.getWeight());
+        newObj.setVaccine(obj.getVaccine());
+    }
 
 }

@@ -26,7 +26,7 @@ public class Address implements Serializable {
     private String state;
 
     @JsonIgnore
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     @MapsId
     private User user;

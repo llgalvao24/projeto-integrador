@@ -1,5 +1,7 @@
 package br.com.helpets.helpetsapi.controller;
 
+import br.com.helpets.helpetsapi.dto.CommentDTO;
+import br.com.helpets.helpetsapi.model.Comment;
 import br.com.helpets.helpetsapi.model.Donation;
 import br.com.helpets.helpetsapi.service.DonationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/donations")
@@ -45,6 +49,12 @@ public class DonationController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<Donation>> findAll() {
+        List<Donation> list = service.findAll();
+        return ResponseEntity.ok().body(list);
     }
 
 }

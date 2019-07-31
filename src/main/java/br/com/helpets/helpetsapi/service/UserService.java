@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +29,7 @@ public class UserService {
                 "Object not found for this id: " + id + ", Type: " + User.class.getName() ));
     }
 
+    @Transactional
     public User insert(User obj) {
         obj.setId(null);
         return repo.save(obj);
@@ -53,13 +55,14 @@ public class UserService {
         return repo.findAll(pageRequest);
     }
 
+    //update logic
     public User fromDTO(UserDTO objDto){
         return new User(objDto.getId(), objDto.getFirstName(), objDto.getLastName(),
                 objDto.getEmail(), null, objDto.getBirthDate(), objDto.getPhone(),
                 objDto.getImageUrl(), objDto.getFrequency());
     }
 
-    //overloading in order to create a new obj using dto logic
+    //overloading in order to create a new obj using dto logic - insert method
     public User fromDTO(UserNewDTO objDto){
         User user = new User(null, objDto.getFirstName(), objDto.getLastName(),
                 objDto.getEmail(), objDto.getCpf(), objDto.getBirthDate(),
@@ -71,7 +74,6 @@ public class UserService {
         user.setLoginUser(lg);
         return user;
     }
-
 
     private void updateData(User newObj, User obj) {
         newObj.setFirstName(obj.getFirstName());

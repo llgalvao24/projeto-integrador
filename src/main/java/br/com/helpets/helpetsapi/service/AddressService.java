@@ -1,5 +1,6 @@
 package br.com.helpets.helpetsapi.service;
 
+import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.service.exception.ObjectNotFoundException;
 import br.com.helpets.helpetsapi.model.Address;
 import br.com.helpets.helpetsapi.repository.AddressRepository;
@@ -18,5 +19,10 @@ public class AddressService {
         Optional<Address> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Object not found for this id: " + id + ", Type: " + Address.class.getName() ));
+    }
+
+    public Address update(Address obj) {
+        find(obj.getId()); //verify if obj exists
+        return repo.save(obj);
     }
 }

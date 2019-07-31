@@ -11,6 +11,8 @@ import java.util.Date;
 @Getter @Setter
 public class UserNewDTO implements Serializable {
 
+    //validation such as @NotNull, @NotEmpty, @Size are done in DTO classes, @CPF
+
     private static final long serialVersionUID = 1L;
 
     private String username;

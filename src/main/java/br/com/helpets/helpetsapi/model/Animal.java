@@ -36,7 +36,7 @@ public class Animal implements Serializable {
     private User user;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "animal")
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL)
     private List<Donation> donations = new ArrayList<>();
 
     public Animal(Long id, String type, String animalName, Integer age, String breed,

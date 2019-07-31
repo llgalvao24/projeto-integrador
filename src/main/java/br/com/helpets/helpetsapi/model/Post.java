@@ -29,7 +29,7 @@ public class Post implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
     public Post(Long id, String title, String postImage, String content, Date postData, User user) {
