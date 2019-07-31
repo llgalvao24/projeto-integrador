@@ -40,6 +40,8 @@ public class User implements Serializable {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     @ElementCollection(fetch=FetchType.EAGER)
     @CollectionTable(name="PROFILES")
     private Set<Integer> profiles = new HashSet<>();
@@ -78,10 +80,9 @@ public class User implements Serializable {
         this.phone = phone;
         this.imageUrl = imageUrl;
         this.frequency = frequency;
+        addProfile(Profile.USER);
 //        this.address = address;
     }
-
-
 
     public Set<Profile> getProfiles() {
         return profiles.stream().map(Profile::toEnum).collect(Collectors.toSet());
@@ -90,6 +91,4 @@ public class User implements Serializable {
     public void addProfile(Profile profile) {
         profiles.add(profile.getCode());
     }
-
-
 }
