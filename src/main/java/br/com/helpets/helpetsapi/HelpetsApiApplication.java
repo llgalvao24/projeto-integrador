@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 @SpringBootApplication
 public class HelpetsApiApplication implements CommandLineRunner {
+
+	@Autowired
+	private BCryptPasswordEncoder pe;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -24,9 +28,6 @@ public class HelpetsApiApplication implements CommandLineRunner {
 
 	@Autowired
 	private AddressRepository addressRepository;
-
-	@Autowired
-	private LoginUserRepository loginUserRepository;
 
 	@Autowired
 	private AnimalRepository animalRepository;
@@ -44,13 +45,8 @@ public class HelpetsApiApplication implements CommandLineRunner {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
-		User user1 = new User(null, "Luiz", "Galvao", "llgalvao24@gmail.com", "08239841414", sdf.parse("24/08/1990"), "19981181356", "profpic1", 1L);
-		User user2 = new User(null, "Ercilia", "Silva", "ercilia@gmail.com", "08239841414", sdf.parse("09/07/1992"), "19981181369", "profpic2", 2L);
-
-		LoginUser lu1 = new LoginUser("llgalvao", "senha123", user1);
-		user1.setLoginUser(lu1);
-		LoginUser lu2 = new LoginUser("ercilia123", "senha123", user2);
-		user2.setLoginUser(lu2);
+		User user1 = new User(null, "llgalvao", pe.encode("senha123"), "Luiz", "Galvao", "llgalvao24@gmail.com", "08239841414", sdf.parse("24/08/1990"), "19981181356", "profpic1", 1L);
+		User user2 = new User(null, "ercilia123", pe.encode("123senha"),"Ercilia", "Silva", "ercilia@gmail.com", "08239841414", sdf.parse("09/07/1992"), "19981181369", "profpic2", 2L);
 
 		Address ad1 = new Address("Maria Nassif Mokarzel", "49", "no", "Jd Sta Genebra", "13084-757", "Campinas", "SP", user1);
 		user1.setAddress(ad1);
@@ -59,7 +55,6 @@ public class HelpetsApiApplication implements CommandLineRunner {
 
 		userRepository.saveAll(Arrays.asList(user1, user2));
 		addressRepository.saveAll(Arrays.asList(ad1,ad2));
-		loginUserRepository.saveAll(Arrays.asList(lu1,lu2));
 
 		Post post1 = new Post(null,"post1", "imageUrl1", "content 1", sdf1.parse("24/08/2019 22:01"), user1);
 		Post post2 = new Post(null,"post2", "imageUrl3", "content 2", sdf1.parse("24/08/2019 22:04"), user2);

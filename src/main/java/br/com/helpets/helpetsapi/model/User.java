@@ -22,6 +22,9 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String username;
+    private String password;
+
     private String firstName;
     private String lastName;
     private String email;
@@ -33,9 +36,6 @@ public class User implements Serializable {
     private String phone;
     private String imageUrl;
     private Long frequency;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private LoginUser loginUser;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;
@@ -65,9 +65,11 @@ public class User implements Serializable {
         addProfile(Profile.USER);
     }
 
-    public User(Long id, String firstName, String lastName, String email, String cpf,
+    public User(Long id, String username, String password, String firstName, String lastName, String email, String cpf,
                 Date birthDate, String phone, String imageUrl, Long frequency) {
         this.id = id;
+        this.username = username;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -76,7 +78,6 @@ public class User implements Serializable {
         this.phone = phone;
         this.imageUrl = imageUrl;
         this.frequency = frequency;
-//        this.loginUser = loginUser;
 //        this.address = address;
     }
 

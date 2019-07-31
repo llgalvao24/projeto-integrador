@@ -3,7 +3,6 @@ package br.com.helpets.helpetsapi.service;
 import br.com.helpets.helpetsapi.dto.UserDTO;
 import br.com.helpets.helpetsapi.dto.UserNewDTO;
 import br.com.helpets.helpetsapi.model.Address;
-import br.com.helpets.helpetsapi.model.LoginUser;
 import br.com.helpets.helpetsapi.model.User;
 import br.com.helpets.helpetsapi.repository.UserRepository;
 import br.com.helpets.helpetsapi.service.exception.ObjectNotFoundException;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +19,10 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
+    //encriptar senha
+    @Autowired
+    private BCryptPasswordEncoder pe;
 
     @Autowired
     UserRepository repo;
@@ -57,21 +61,19 @@ public class UserService {
 
     //update logic
     public User fromDTO(UserDTO objDto){
-        return new User(objDto.getId(), objDto.getFirstName(), objDto.getLastName(),
+        return new User(objDto.getId(), null, null, objDto.getFirstName(), objDto.getLastName(),
                 objDto.getEmail(), null, objDto.getBirthDate(), objDto.getPhone(),
                 objDto.getImageUrl(), objDto.getFrequency());
     }
 
     //overloading in order to create a new obj using dto logic - insert method
     public User fromDTO(UserNewDTO objDto){
-        User user = new User(null, objDto.getFirstName(), objDto.getLastName(),
+        User user = new User(null, objDto.getUsername(), pe.encode(objDto.getPassword()), objDto.getFirstName(), objDto.getLastName(),
                 objDto.getEmail(), objDto.getCpf(), objDto.getBirthDate(),
                 objDto.getPhone(), objDto.getImageUrl(), objDto.getFrequency());
         Address address = new Address(objDto.getStreetName(), objDto.getStreetNumber(), objDto.getReference(), objDto.getNeighbourhood(),
                 objDto.getZipCode(), objDto.getCity(), objDto.getState(), user);
-        LoginUser lg = new LoginUser(objDto.getUsername(), objDto.getPassword(), user);
         user.setAddress(address);
-        user.setLoginUser(lg);
         return user;
     }
 
