@@ -1,6 +1,7 @@
 .interna_sobre {
 	background: url("../img/bg-sobre.jpg") no-repeat center;
 	background-size: cover;
+	background-color: #696969;
 }
 
 .missao_sobre {
@@ -8,7 +9,7 @@
 }
 
 .missao_sobre p {
-	font-size: 18px;
+
 	line-height: 25px;
 	margin-bottom: 1em;
 	padding-right: 60px;
