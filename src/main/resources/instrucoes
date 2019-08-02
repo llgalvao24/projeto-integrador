@@ -1,0 +1,46 @@
+1 - subir o back
+2 - rodar o script:
+
+CREATE DATABASE backend;
+
+USE backend;
+
+SELECT * FROM user;
+
+SELECT * FROM role;
+
+INSERT INTO role(name) VALUES ('ROLE_ADMIN');
+INSERT INTO role(name) VALUES ('ROLE_USER');
+
+SELECT * FROM user_role;
+
+3 - criar um login
+
+POST - localhost:8080/api/v1/auth/sign-up
+
+{
+	"name": "llgalvao",
+	"username": "llgalvao24",
+	"email": "llgalvao@gmail.com",
+	"password": "senha123"
+}
+
+4 - Fazer o login
+
+localhost:8080/api/v1/auth/sign-in
+
+{
+	"usernameOrEmail":"llgalvao24",
+	"password": "senha123"
+}
+
+5 - Pegar o token
+
+{
+    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNTY0NzExNzYyLCJleHAiOjE1NjU1NzU3NjJ9.dl1OHSeupDKBFl_BHcmC4p1aTfONajFoVWLW7DAkhmERc4zupBflWbGFcbBX1xzG_2qm2O3O-T_HBvdRHEu3iQ",
+    "tokenType": "Bearer"
+}
+
+6 - Correr pro abraço
+
+
