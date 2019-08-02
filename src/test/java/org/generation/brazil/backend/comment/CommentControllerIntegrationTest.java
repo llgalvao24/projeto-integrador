@@ -1,10 +1,7 @@
-package org.generation.brazil.backend.pessoa;
+package org.generation.brazil.backend.comment;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.Collections;
 import org.generation.brazil.backend.BackEndApplication;
+import org.generation.brazil.backend.comment.Comment;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,16 +10,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Collections;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BackEndApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
-public class PessoaControllerIntegrationTest {
+public class CommentControllerIntegrationTest {
 
   @Autowired
   private TestRestTemplate testRestTemplate;
@@ -31,30 +29,30 @@ public class PessoaControllerIntegrationTest {
   private int port;
 
   private String getRootUrl() {
-    return "http://localhost:" + port + "/api/v1/pessoas/";
+    return "http://localhost:" + port + "/api/v1/comments/";
   }
 
   private String token;
 
   @Before
   public void init() {
-    this.token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTY0NjY2MzM0LCJleHAiOjE1NjU1MzAzMzR9.msN9ebk2SnYWLvLQQavrOKNf_lJDvROkMYreCqoMQGNznIm4UasEPVvkexHj5bfwkeSK4swiHqp4gP0gdquSQA";
+    this.token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0IiwiaWF0IjoxNTY0NzY0Nzg0LCJleHAiOjE1NjU2Mjg3ODR9.HG0nzXvQbj7VcDtTzBbjpNdJAcf0SBdUG2maZBv5CLRtd3TV62SjqH_hipy8innfx4uBY1dCpCKmNIbli7MvTg";
   }
 
   @Test
-  public void testaCriacaoDeUmaNovaPessoa() {
+  public void testaCriacaoDeUmComment() {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
     headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
     headers.add("Authorization", "Bearer " + this.token);
 
-    HttpEntity<Pessoa> entity = new HttpEntity<>(PessoaMock.getPessoaMock(), headers);
+    HttpEntity<Comment> entity = new HttpEntity<>(CommentMock.getCommentMock(), headers);
 
-    ResponseEntity<Pessoa> responseEntity = testRestTemplate.exchange(
+    ResponseEntity<Comment> responseEntity = testRestTemplate.exchange(
         getRootUrl(),
         HttpMethod.POST,
         entity,
-        Pessoa.class
+        Comment.class
     );
 
     assertNotNull(responseEntity);
@@ -62,7 +60,7 @@ public class PessoaControllerIntegrationTest {
   }
 
   @Test
-  public void testaConsultaDeTodasAsPessoas() {
+  public void testaConsultaDeTodasAsComments() {
     HttpHeaders headers = new HttpHeaders();
     headers.add("Authorization", "Bearer " + this.token);
     HttpEntity<String> entity = new HttpEntity<>(null, headers);
@@ -83,30 +81,30 @@ public class PessoaControllerIntegrationTest {
     headers.add("Authorization", "Bearer " + this.token);
     HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
-    ResponseEntity<Pessoa> response = testRestTemplate.exchange(
+    ResponseEntity<Comment> response = testRestTemplate.exchange(
         getRootUrl() + "1",
         HttpMethod.GET,
         entity,
-        Pessoa.class);
+        Comment.class);
 
     assertNotNull(response.getBody());
     assertEquals(200, response.getStatusCodeValue());
   }
 
   @Test
-  public void testaAtualizacaoDeUmaPessoa() {
+  public void testaAtualizacaoDeUmaComment() {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
     headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
     headers.add("Authorization", "Bearer " + this.token);
 
-    HttpEntity<Pessoa> entity = new HttpEntity<>(PessoaMock.getPessoaMock(), headers);
+    HttpEntity<Comment> entity = new HttpEntity<>(CommentMock.getCommentMock(), headers);
 
-    ResponseEntity<Pessoa> responseEntity = testRestTemplate.exchange(
+    ResponseEntity<Comment> responseEntity = testRestTemplate.exchange(
         getRootUrl() + "1",
         HttpMethod.PUT,
         entity,
-        Pessoa.class
+        Comment.class
     );
 
     assertNotNull(responseEntity);
