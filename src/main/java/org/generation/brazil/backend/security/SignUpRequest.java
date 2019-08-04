@@ -3,26 +3,37 @@ package org.generation.brazil.backend.security;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class SignUpRequest {
 
-  @NotBlank
-  @Size(min = 4, max = 40)
+  private String username;
+  private String password;
+
   private String name;
 
-  @NotBlank
-  @Size(min = 3, max = 15)
-  private String username;
-
-  @Email
-  @NotBlank
-  @Size(max = 40)
+  @Email(message = "Invalid email")
   private String email;
+  private String cpf;
 
-  @NotBlank
-  @Size(min = 6, max = 20)
-  private String password;
+  @JsonFormat(pattern="dd/MM/yyyy")
+  private Date birthDate;
+
+  private String phone;
+  private String imageUrl;
+  private Long frequency;
+
+  private String streetName;
+  private String streetNumber;
+  private String reference;
+  private String neighbourhood;
+  private String zipCode;
+  private String city;
+  private String state;
 
 }

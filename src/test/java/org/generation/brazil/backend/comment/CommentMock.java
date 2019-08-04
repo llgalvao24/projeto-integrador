@@ -1,7 +1,6 @@
 package org.generation.brazil.backend.comment;
 
 import com.github.javafaker.Faker;
-import org.generation.brazil.backend.pessoa.Pessoa;
 
 import java.time.Instant;
 import java.util.Date;
